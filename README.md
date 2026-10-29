@@ -1,6 +1,9 @@
 # Análisis de algoritmos en el contexto de la bibliometría
 
-Proyecto final de Análisis de algoritmos, Universidad del Quindío (Ingeniería de Sistemas y Computación, docente Sergio Augusto Cardona Torres). Integrantes: Daniela Castañeda Cartagena y David Esteban Perez Arevalo. Continúa el Seguimiento 2026-2 (ranking de términos sin comparaciones) sobre el mismo corpus: 20 artículos en PDF sobre inteligencia artificial en educación. Todo el procesamiento se hace sobre el abstract de cada artículo; el título y los autores se usan para identificar cada resultado.
+Proyecto final de Análisis de algoritmos de la Universidad del Quindío. 
+Programa: Ingeniería de Sistemas y Computación
+Docente: Sergio Augusto Cardona Torres
+Integrantes: Daniela Castañeda Cartagena y David Esteban Perez Arevalo. 
 
 La aplicación web tiene tres módulos:
 
@@ -8,7 +11,7 @@ La aplicación web tiene tres módulos:
 2. **Agrupamiento jerárquico**: single, complete y average linkage implementados desde cero, con dendrograma en SVG, correlación cofenética y coeficiente de silueta.
 3. **Búsqueda de patrones**: KMP, Boyer-Moore (carácter malo y sufijo bueno) y Rabin-Karp (rolling hash), sin `indexOf` ni `find`, con tiempos de preprocesamiento y de búsqueda por separado.
 
-El documento técnico (arquitectura, casos de estudio paso a paso, T(n) y declaración de uso de IA) se entrega aparte. Para entender qué hace cada proceso y cómo funciona, lee `docs/como_funciona.md`; los cálculos paso a paso están en `docs/calculos_paso_a_paso.xlsx`.
+El documento técnico se entrega aparte. Para entender qué hace cada proceso y cómo funciona, lee `docs/como_funciona.md`; los cálculos paso a paso están en `docs/calculos_paso_a_paso.xlsx`.
 
 ## Estructura
 
@@ -59,19 +62,3 @@ Los datos de `datos/` ya están listos, así que los pasos 1 a 4 no necesitan lo
 ## Despliegue
 
 La aplicación es un solo proceso Java que lee el puerto de la variable `PORT`. El `Dockerfile` compila el código y deja la imagen lista.
-
-**Render (gratis):**
-1. Subir esta carpeta a un repositorio de GitHub (sin los PDF).
-2. En https://render.com: *New > Web Service*, conectar el repositorio y elegir *Runtime: Docker*. Render detecta el `Dockerfile`.
-3. Plan *Free* y *Create Web Service*. Al terminar, Render da una URL pública del tipo `https://<nombre>.onrender.com`.
-
-En el plan gratuito el servicio se duerme tras 15 minutos sin visitas y tarda cerca de un minuto en despertar.
-
-**Azure (Container Apps):** la guía paso a paso está en `docs/despliegue_azure.md`.
-
-**Con Docker en cualquier equipo:** `docker build -t bibliometria .` y `docker run -p 8080:8080 bibliometria`.
-
-## Reglas del curso que cumple
-
-- Los algoritmos pedidos están escritos a mano con arreglos, ciclos y condicionales. No se usa `indexOf`, `String.contains` ni `find`, ni librerías de similitud, clustering o búsqueda.
-- Las librerías externas son solo PDFBox (leer los PDF) y, en Python, `sentence-transformers` para obtener los vectores preentrenados; la similitud entre esos vectores se calcula en Java.
