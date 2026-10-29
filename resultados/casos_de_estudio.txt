@@ -1,0 +1,340 @@
+
+==================================================================
+REQUERIMIENTO 1. Caso de estudio: articulo 11 vs articulo 16
+==================================================================
+A = A scoping review on how generative artificial intelligence transforms assessment in higher education (Qi Xia, Xiaojing Weng, Fan Ouyang, Tzung Jin Lin, Thomas K.F. Chiu)
+B = Generative Artificial Intelligence in Tertiary Education: Assessment Redesign Principles and Considerations (Che Yee Lye, Lyndon Lim)
+Terminos de A (n = 114): generative artificial intelligence provides opportunities challenges higher education existing literature properly investigated technology impact assessment higher education scoping review took forward thinking approach investigate generative artificial intelligence transforms assessment higher education used prisma extension scoping reviews select articles review report results screening retrieved articles selected empirical studies analysis articles published used three levels students teachers institutions analyses articles results suggested assessment transformed cultivate students self regulated learning skills responsible learning integrity successfully transform assessment higher education review suggested teacher professional development activities assessment ai digital literacy provided ii teachers beliefs human ai assessment strengthened iii teachers innovative holistic teaching reflect assessment transformation educational institutions recommended review rethink assessment policies provide inter disciplinary programs teaching
+Terminos de B (m = 93): emergence generative artificial intelligence ai chatgpt sparked significant assessment concerns tertiary education assessment concerns largely revolved around academic integrity issues students plagiarism cheating nonetheless critical consider generative ai models trained information retrieved internet produce biased discriminatory outputs hallucination issues large language models generative ai acts provide made untruthful outputs article considers affordances challenges generative ai specific assessments tertiary education illustrates considerations assessment redesign existence generative ai proposes avoid adopt aaa principle rethink redesign assessments argues generative ai tools emerge exponentially hence engaging arms race generative ai policing use technologies address fundamental issues assessments
+
+==================================================================
+1.1 Levenshtein: subcaso con los 7 primeros terminos
+==================================================================
+                   -     emergence    generative    artificial  intelligence            ai       chatgpt       sparked
+-                  0             1             2             3             4             5             6             7
+generative         1             1             1             2             3             4             5             6
+artificial         2             2             2             1             2             3             4             5
+intelligence       3             3             3             2             1             2             3             4
+provides           4             4             4             3             2             2             3             4
+opportunities      5             5             5             4             3             3             3             4
+challenges         6             6             6             5             4             4             4             4
+higher             7             7             7             6             5             5             5             5
+Distancia del subcaso = 5; similitud = 1 - 5/7 = 0.2857
+Abstracts completos: D[114][93] = 108; similitud = 1 - 108/114 = 0.0526
+Celdas llenadas: 10810
+
+==================================================================
+1.2 Needleman-Wunsch (+1, -1, -1): subcaso con los 7 primeros terminos
+==================================================================
+                   -     emergence    generative    artificial  intelligence            ai       chatgpt       sparked
+-                  0            -1            -2            -3            -4            -5            -6            -7
+generative        -1            -1             0            -1            -2            -3            -4            -5
+artificial        -2            -2            -1             1             0            -1            -2            -3
+intelligence      -3            -3            -2             0             2             1             0            -1
+provides          -4            -4            -3            -1             1             1             0            -1
+opportunities     -5            -5            -4            -2             0             0             0            -1
+challenges        -6            -6            -5            -3            -1            -1            -1            -1
+higher            -7            -7            -6            -4            -2            -2            -2            -2
+Alineamiento A: - | generative | artificial | intelligence | provides | opportunities | challenges | higher
+Alineamiento B: emergence | generative | artificial | intelligence | - | ai | chatgpt | sparked
+Puntaje = -2; coincidencias = 3; longitud = 8; similitud = 0.3750
+Abstracts completos: puntaje = -100, coincidencias = 8, longitud del alineamiento = 116, similitud = 0.0690
+Terminos emparejados en orden: generative artificial intelligence assessment education assessment education assessment 
+
+==================================================================
+1.3 Coseno con TF-IDF (idf = log10(20 / df))
+==================================================================
+Vocabulario del corpus V = 987
+termino | tfA | tfB | df | idf | wA | wB | wA*wB
+artificial | 2 | 1 | 20 | 0.0000 | 0.0000 | 0.0000 | 0.0000
+intelligence | 2 | 1 | 20 | 0.0000 | 0.0000 | 0.0000 | 0.0000
+ai | 2 | 7 | 18 | 0.0458 | 0.0915 | 0.3203 | 0.0293
+education | 4 | 2 | 18 | 0.0458 | 0.1830 | 0.0915 | 0.0167
+assessment | 8 | 3 | 10 | 0.3010 | 2.4082 | 0.9031 | 2.1749
+students | 2 | 1 | 8 | 0.3979 | 0.7959 | 0.3979 | 0.3167
+challenges | 1 | 1 | 6 | 0.5229 | 0.5229 | 0.5229 | 0.2734
+generative | 2 | 7 | 5 | 0.6021 | 1.2041 | 4.2144 | 5.0747
+provide | 1 | 1 | 10 | 0.3010 | 0.3010 | 0.3010 | 0.0906
+retrieved | 1 | 1 | 2 | 1.0000 | 1.0000 | 1.0000 | 1.0000
+integrity | 1 | 1 | 2 | 1.0000 | 1.0000 | 1.0000 | 1.0000
+rethink | 1 | 1 | 2 | 1.0000 | 1.0000 | 1.0000 | 1.0000
+Producto punto A.B = 10.9763
+|A| = 9.8019   |B| = 11.1837
+Terminos de A con mayor peso:
+  assessment: tf = 8, df = 10, w = 2.4082
+  higher: tf = 4, df = 6, w = 2.0915
+  articles: tf = 4, df = 6, w = 2.0915
+  suggested: tf = 2, df = 2, w = 2.0000
+  teachers: tf = 3, df = 5, w = 1.8062
+  scoping: tf = 2, df = 3, w = 1.6478
+Terminos de B con mayor peso:
+  generative: tf = 7, df = 5, w = 4.2144
+  tertiary: tf = 2, df = 1, w = 2.6021
+  outputs: tf = 2, df = 1, w = 2.6021
+  redesign: tf = 2, df = 1, w = 2.6021
+  assessments: tf = 3, df = 3, w = 2.4717
+  issues: tf = 3, df = 4, w = 2.0969
+cos(theta) = 10.9763 / (9.8019 * 11.1837) = 0.1001
+theta = 84.2534 grados
+
+==================================================================
+1.4 Jaccard
+==================================================================
+|A| = 81  |B| = 69  |A n B| = 12  |A u B| = 138
+A n B = [education, retrieved, assessment, integrity, ai, intelligence, provide, challenges, students, generative, rethink, artificial]
+J = 12 / 138 = 0.0870
+
+==================================================================
+1.5 GloVe 100d: promedio de vectores de palabra
+==================================================================
+Primeras 5 dimensiones de los 3 primeros terminos de A:
+generative = (0.3524, 0.7799, 0.1549, 0.1126, -0.1591, ...)
+artificial = (0.3455, 0.3144, -0.0313, 0.6368, 0.2727, ...)
+intelligence = (-0.3110, -0.4329, 0.7773, -0.3112, 0.0529, ...)
+A: terminos con vector = 114 de 114
+Faltan en GloVe (A): 
+B: terminos con vector = 92 de 93
+Faltan en GloVe (B): chatgpt 
+vector promedio A (5 primeras) = (-0.0663, 0.2645, -0.0602, 0.2184, 0.0156, ...)
+vector promedio B (5 primeras) = (-0.0835, 0.2641, 0.1889, 0.1685, -0.0400, ...)
+A.B = 7.5719  |A| = 3.1999  |B| = 2.5323
+cos = 0.9345   angulo = 20.8591 grados   euclidiana = 1.2280
+Rango de coseno GloVe en los 190 pares: ver resultados/similitud_glove.csv
+
+==================================================================
+1.6 Sentence-BERT all-MiniLM-L6-v2 (384d)
+==================================================================
+A (5 primeras) = (-0.0713, 0.0167, 0.0047, 0.0100, -0.0383, ...)
+B (5 primeras) = (-0.0985, -0.0041, 0.0579, -0.0224, 0.0035, ...)
+  a1*b1 = -0.071286 * -0.098539 = 0.007025
+  a2*b2 = 0.016696 * -0.004083 = -0.000068
+  a3*b3 = 0.004668 * 0.057946 = 0.000270
+  a4*b4 = 0.010019 * -0.022400 = -0.000224
+  a5*b5 = -0.038306 * 0.003492 = -0.000134
+Suma de los 5 primeros productos = 0.006869
+A.B (384 productos) = 0.7355  |A| = 1.0000  |B| = 1.0000
+cos = 0.7355   angulo = 42.6513 grados   euclidiana = 0.7273 (= raiz(2 - 2cos) = 0.7273)
+
+==================================================================
+1.7 Resumen del caso de estudio
+==================================================================
+Levenshtein = 0.0526
+Needleman-Wunsch = 0.0690
+Coseno TF-IDF = 0.1001
+Jaccard = 0.0870
+GloVe (coseno) = 0.9345
+Sentence-BERT (coseno) = 0.7355
+
+==================================================================
+REQUERIMIENTO 2. Matriz de distancias d = 1 - coseno(TF-IDF)
+==================================================================
+         1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20
+    1 0.00 0.96 0.98 0.98 0.97 0.97 0.99 0.97 0.96 0.98 0.92 0.96 0.95 0.97 0.96 1.00 0.98 0.99 0.98 0.96
+    2 0.96 0.00 0.96 0.96 0.86 0.80 0.92 0.94 0.84 0.93 0.91 0.92 0.96 0.97 0.95 0.98 0.95 0.93 0.92 0.86
+    3 0.98 0.96 0.00 0.99 0.96 0.97 0.97 0.96 0.98 0.97 0.96 0.95 0.97 0.98 0.94 0.99 0.96 0.99 0.98 0.98
+    4 0.98 0.96 0.99 0.00 0.99 0.98 0.98 0.96 0.98 0.94 0.97 0.97 0.99 0.99 0.98 0.99 0.98 0.99 0.98 0.97
+    5 0.97 0.86 0.96 0.99 0.00 0.87 0.94 0.91 0.90 0.92 0.95 0.96 0.98 0.98 0.98 0.96 0.91 0.97 0.98 0.92
+    6 0.97 0.80 0.97 0.98 0.87 0.00 0.94 0.97 0.84 0.97 0.96 0.94 0.97 0.95 0.98 0.96 0.98 0.97 0.97 0.90
+    7 0.99 0.92 0.97 0.98 0.94 0.94 0.00 0.99 0.94 0.99 0.96 0.96 0.97 0.99 0.96 0.98 0.98 0.97 0.97 0.95
+    8 0.97 0.94 0.96 0.96 0.91 0.97 0.99 0.00 0.96 0.86 0.93 0.95 0.96 0.98 0.93 0.99 0.95 0.98 0.98 0.95
+    9 0.96 0.84 0.98 0.98 0.90 0.84 0.94 0.96 0.00 0.97 0.95 0.92 0.99 0.96 0.95 0.96 0.96 0.94 0.99 0.89
+   10 0.98 0.93 0.97 0.94 0.92 0.97 0.99 0.86 0.97 0.00 0.95 0.98 0.98 0.98 0.96 0.98 0.93 0.98 0.96 0.96
+   11 0.92 0.91 0.96 0.97 0.95 0.96 0.96 0.93 0.95 0.95 0.00 0.92 0.94 0.94 0.94 0.90 0.91 0.97 0.96 0.91
+   12 0.96 0.92 0.95 0.97 0.96 0.94 0.96 0.95 0.92 0.98 0.92 0.00 0.97 0.98 0.94 0.99 0.98 0.97 0.96 0.86
+   13 0.95 0.96 0.97 0.99 0.98 0.97 0.97 0.96 0.99 0.98 0.94 0.97 0.00 0.99 0.98 0.97 0.96 0.96 0.98 0.93
+   14 0.97 0.97 0.98 0.99 0.98 0.95 0.99 0.98 0.96 0.98 0.94 0.98 0.99 0.00 0.96 0.98 0.98 0.97 0.99 0.96
+   15 0.96 0.95 0.94 0.98 0.98 0.98 0.96 0.93 0.95 0.96 0.94 0.94 0.98 0.96 0.00 0.96 0.97 0.97 0.97 0.92
+   16 1.00 0.98 0.99 0.99 0.96 0.96 0.98 0.99 0.96 0.98 0.90 0.99 0.97 0.98 0.96 0.00 0.97 0.96 0.94 0.98
+   17 0.98 0.95 0.96 0.98 0.91 0.98 0.98 0.95 0.96 0.93 0.91 0.98 0.96 0.98 0.97 0.97 0.00 0.98 0.97 0.90
+   18 0.99 0.93 0.99 0.99 0.97 0.97 0.97 0.98 0.94 0.98 0.97 0.97 0.96 0.97 0.97 0.96 0.98 0.00 0.96 0.96
+   19 0.98 0.92 0.98 0.98 0.98 0.97 0.97 0.98 0.99 0.96 0.96 0.96 0.98 0.99 0.97 0.94 0.97 0.96 0.00 0.98
+   20 0.96 0.86 0.98 0.97 0.92 0.90 0.95 0.95 0.89 0.96 0.91 0.86 0.93 0.96 0.92 0.98 0.90 0.96 0.98 0.00
+
+==================================================================
+Fusiones con single linkage
+==================================================================
+Paso 1: G20 = {2} + {6}  a distancia 0.8016  (tamano 2)
+Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8402  (tamano 3)
+Paso 3: G22 = {12} + {20}  a distancia 0.8581  (tamano 2)
+Paso 4: G23 = {5} + G21{9,2,6}  a distancia 0.8596  (tamano 4)
+Paso 5: G24 = {8} + {10}  a distancia 0.8633  (tamano 2)
+Paso 6: G25 = G22{12,20} + G23{5,9,2,6}  a distancia 0.8646  (tamano 6)
+Paso 7: G26 = {11} + {16}  a distancia 0.8999  (tamano 2)
+Paso 8: G27 = {17} + G25{12,20,5,9,2,6}  a distancia 0.9037  (tamano 7)
+Paso 9: G28 = G26{11,16} + G27{17,12,20,5,9,2,6}  a distancia 0.9093  (tamano 9)
+Paso 10: G29 = G24{8,10} + G28{11,16,17,12,20,5,9,2,6}  a distancia 0.9108  (tamano 11)
+Paso 11: G30 = {1} + G29{8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9162  (tamano 12)
+Paso 12: G31 = {19} + G30{1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9200  (tamano 13)
+Paso 13: G32 = {7} + G31{19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9244  (tamano 14)
+Paso 14: G33 = {15} + G32{7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9248  (tamano 15)
+Paso 15: G34 = {18} + G33{15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9295  (tamano 16)
+Paso 16: G35 = {13} + G34{18,15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9332  (tamano 17)
+Paso 17: G36 = {14} + G35{13,18,15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9359  (tamano 18)
+Paso 18: G37 = {4} + G36{14,13,18,15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9431  (tamano 19)
+Paso 19: G38 = {3} + G37{4,14,13,18,15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9447  (tamano 20)
+Correlacion cofenetica = 0.7568
+  silueta k=2: 0.0140
+  silueta k=3: 0.0131
+  silueta k=4: 0.0088
+  silueta k=5: 0.0055
+  silueta k=6: 0.0031
+
+==================================================================
+Fusiones con complete linkage
+==================================================================
+Paso 1: G20 = {2} + {6}  a distancia 0.8016  (tamano 2)
+Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8442  (tamano 3)
+Paso 3: G22 = {12} + {20}  a distancia 0.8581  (tamano 2)
+Paso 4: G23 = {8} + {10}  a distancia 0.8633  (tamano 2)
+Paso 5: G24 = {11} + {16}  a distancia 0.8999  (tamano 2)
+Paso 6: G25 = {5} + G21{9,2,6}  a distancia 0.9019  (tamano 4)
+Paso 7: G26 = {15} + G22{12,20}  a distancia 0.9353  (tamano 3)
+Paso 8: G27 = {7} + G25{5,9,2,6}  a distancia 0.9395  (tamano 5)
+Paso 9: G28 = {17} + G23{8,10}  a distancia 0.9461  (tamano 3)
+Paso 10: G29 = {1} + {13}  a distancia 0.9546  (tamano 2)
+Paso 11: G30 = {19} + G24{11,16}  a distancia 0.9581  (tamano 3)
+Paso 12: G31 = {18} + G26{15,12,20}  a distancia 0.9667  (tamano 4)
+Paso 13: G32 = {3} + G28{17,8,10}  a distancia 0.9689  (tamano 4)
+Paso 14: G33 = G27{7,5,9,2,6} + G31{18,15,12,20}  a distancia 0.9791  (tamano 9)
+Paso 15: G34 = {14} + G32{3,17,8,10}  a distancia 0.9828  (tamano 5)
+Paso 16: G35 = {4} + G29{1,13}  a distancia 0.9853  (tamano 3)
+Paso 17: G36 = G30{19,11,16} + G33{7,5,9,2,6,18,15,12,20}  a distancia 0.9872  (tamano 12)
+Paso 18: G37 = G34{14,3,17,8,10} + G35{4,1,13}  a distancia 0.9937  (tamano 8)
+Paso 19: G38 = G36{19,11,16,7,5,9,2,6,18,15,12,20} + G37{14,3,17,8,10,4,1,13}  a distancia 0.9990  (tamano 20)
+Correlacion cofenetica = 0.7303
+  silueta k=2: 0.0164
+  silueta k=3: 0.0157
+  silueta k=4: 0.0190
+  silueta k=5: 0.0192
+  silueta k=6: 0.0204
+
+==================================================================
+Fusiones con average linkage
+==================================================================
+Paso 1: G20 = {2} + {6}  a distancia 0.8016  (tamano 2)
+Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8422  (tamano 3)
+Paso 3: G22 = {12} + {20}  a distancia 0.8581  (tamano 2)
+Paso 4: G23 = {8} + {10}  a distancia 0.8633  (tamano 2)
+Paso 5: G24 = {5} + G21{9,2,6}  a distancia 0.8756  (tamano 4)
+Paso 6: G25 = {11} + {16}  a distancia 0.8999  (tamano 2)
+Paso 7: G26 = G22{12,20} + G24{5,9,2,6}  a distancia 0.9137  (tamano 6)
+Paso 8: G27 = {17} + G25{11,16}  a distancia 0.9400  (tamano 3)
+Paso 9: G28 = {7} + G26{12,20,5,9,2,6}  a distancia 0.9413  (tamano 7)
+Paso 10: G29 = {3} + {15}  a distancia 0.9447  (tamano 2)
+Paso 11: G30 = {4} + G23{8,10}  a distancia 0.9528  (tamano 3)
+Paso 12: G31 = G27{17,11,16} + G28{7,12,20,5,9,2,6}  a distancia 0.9540  (tamano 10)
+Paso 13: G32 = {1} + {13}  a distancia 0.9546  (tamano 2)
+Paso 14: G33 = {18} + G31{17,11,16,7,12,20,5,9,2,6}  a distancia 0.9614  (tamano 11)
+Paso 15: G34 = G29{3,15} + G33{18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9629  (tamano 13)
+Paso 16: G35 = G30{4,8,10} + G34{3,15,18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9656  (tamano 16)
+Paso 17: G36 = {19} + G35{4,8,10,3,15,18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9677  (tamano 17)
+Paso 18: G37 = G32{1,13} + G36{19,4,8,10,3,15,18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9690  (tamano 19)
+Paso 19: G38 = {14} + G37{1,13,19,4,8,10,3,15,18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9741  (tamano 20)
+Correlacion cofenetica = 0.8049
+  silueta k=2: 0.0186
+  silueta k=3: 0.0142
+  silueta k=4: 0.0089
+  silueta k=5: 0.0143
+  silueta k=6: 0.0165
+
+==================================================================
+REQUERIMIENTO 3. Patron "intelligence in" (m = 15) en texto de n = 154
+==================================================================
+Texto: according to various international reports, artificial intelligence in education (aied) is one of the currently emerging fields in educational technology.
+Posiciones (indice: caracter):
+0:a 1:c 2:c 3:o 4:r 5:d 6:i 7:n 8:g 9:_ 10:t 11:o 12:_ 13:v 14:a 15:r 16:i 17:o 18:u 19:s 20:_ 21:i 22:n 23:t 24:e 25:r 26:n 27:a 28:t 29:i 30:o 31:n 32:a 33:l 34:_ 35:r 36:e 37:p 38:o 39:r 40:t 41:s 42:, 43:_ 44:a 45:r 46:t 47:i 48:f 49:i 50:c 51:i 52:a 53:l 54:_ 55:i 56:n 57:t 58:e 59:l 60:l 61:i 62:g 63:e 64:n 65:c 66:e 67:_ 68:i 69:n 70:_ 71:e 72:d 73:u 74:c 75:a 76:t 77:i 78:o 79:n 80:_ 81:( 82:a 83:i 84:e 85:d 86:) 87:_ 88:i 89:s 90:_ 91:o 92:n 93:e 94:_ 95:o 96:f 97:_ 98:t 99:h 100:e 101:_ 102:c 103:u 104:r 105:r 106:e 107:n 108:t 109:l 110:y 111:_ 112:e 113:m 114:e 115:r 116:g 117:i 118:n 119:g 120:_ 121:f 122:i 123:e 124:l 125:d 126:s 127:_ 128:i 129:n 130:_ 131:e 132:d 133:u 134:c 135:a 136:t 137:i 138:o 139:n 140:a 141:l 142:_ 143:t 144:e 145:c 146:h 147:n 148:o 149:l 150:o 151:g 152:y 153:. 
+
+==================================================================
+3.1 KMP
+==================================================================
+q   : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+P[q]: [i, n, t, e, l, l, i, g, e, n, c, e,  , i, n]
+pi  : [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2]
+  i=8 T[i]='g' falla con P[2]='t' -> q = pi[1] = 0
+  i=17 T[i]='o' falla con P[1]='n' -> q = pi[0] = 0
+  i=25 T[i]='r' falla con P[4]='l' -> q = pi[3] = 0
+  i=30 T[i]='o' falla con P[1]='n' -> q = pi[0] = 0
+  i=48 T[i]='f' falla con P[1]='n' -> q = pi[0] = 0
+  i=50 T[i]='c' falla con P[1]='n' -> q = pi[0] = 0
+  i=52 T[i]='a' falla con P[1]='n' -> q = pi[0] = 0
+  i=69 q=15 -> OCURRENCIA en 55; q = pi[14] = 2
+  i=70 T[i]=' ' falla con P[2]='t' -> q = pi[1] = 0
+  i=78 T[i]='o' falla con P[1]='n' -> q = pi[0] = 0
+  i=84 T[i]='e' falla con P[1]='n' -> q = pi[0] = 0
+  i=89 T[i]='s' falla con P[1]='n' -> q = pi[0] = 0
+  i=119 T[i]='g' falla con P[2]='t' -> q = pi[1] = 0
+  i=123 T[i]='e' falla con P[1]='n' -> q = pi[0] = 0
+  i=130 T[i]=' ' falla con P[2]='t' -> q = pi[1] = 0
+  i=138 T[i]='o' falla con P[1]='n' -> q = pi[0] = 0
+Ocurrencias = [55]; comparaciones = 169
+
+==================================================================
+3.2 Boyer-Moore
+==================================================================
+Caracter malo (ultima posicion en el patron):
+  ultimo['i'] = 13
+  ultimo['n'] = 14
+  ultimo['t'] = 2
+  ultimo['e'] = 11
+  ultimo['l'] = 5
+  ultimo['g'] = 7
+  ultimo['c'] = 10
+  ultimo[' '] = 12
+  cualquier otro caracter = -1
+j            : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+borde[j]     : [13, 14, 15, 15, 15, 15, 15, 15, 15, 14, 15, 15, 15, 15, 15, 16]
+desplaz.[j]  : [13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 5, 1]
+  s=0 [according_to_va] falla en j=14 (T='a', P='n'): caracter malo = 14 - (-1) = 15, sufijo bueno = desplaz.[15] = 1 -> s += 15
+  s=15 [rious_internati] falla en j=14 (T='i', P='n'): caracter malo = 14 - (13) = 1, sufijo bueno = desplaz.[15] = 1 -> s += 1
+  s=16 [ious_internatio] falla en j=14 (T='o', P='n'): caracter malo = 14 - (-1) = 15, sufijo bueno = desplaz.[15] = 1 -> s += 15
+  s=31 [nal_reports,_ar] falla en j=14 (T='r', P='n'): caracter malo = 14 - (-1) = 15, sufijo bueno = desplaz.[15] = 1 -> s += 15
+  s=46 [tificial_intell] falla en j=14 (T='l', P='n'): caracter malo = 14 - (5) = 9, sufijo bueno = desplaz.[15] = 1 -> s += 9
+  s=55 [intelligence_in] coincide todo -> OCURRENCIA; s += desplaz.[0] = 13
+  s=68 [in_education_(a] falla en j=14 (T='a', P='n'): caracter malo = 14 - (-1) = 15, sufijo bueno = desplaz.[15] = 1 -> s += 15
+  s=83 [ied)_is_one_of_] falla en j=14 (T='_', P='n'): caracter malo = 14 - (12) = 2, sufijo bueno = desplaz.[15] = 1 -> s += 2
+  s=85 [d)_is_one_of_th] falla en j=14 (T='h', P='n'): caracter malo = 14 - (-1) = 15, sufijo bueno = desplaz.[15] = 1 -> s += 15
+  s=100 [e_currently_eme] falla en j=14 (T='e', P='n'): caracter malo = 14 - (11) = 3, sufijo bueno = desplaz.[15] = 1 -> s += 3
+  s=103 [urrently_emergi] falla en j=14 (T='i', P='n'): caracter malo = 14 - (13) = 1, sufijo bueno = desplaz.[15] = 1 -> s += 1
+  s=104 [rrently_emergin] falla en j=12 (T='g', P=' '): caracter malo = 12 - (7) = 5, sufijo bueno = desplaz.[13] = 13 -> s += 13
+  s=117 [ing_fields_in_e] falla en j=14 (T='e', P='n'): caracter malo = 14 - (11) = 3, sufijo bueno = desplaz.[15] = 1 -> s += 3
+  s=120 [_fields_in_educ] falla en j=14 (T='c', P='n'): caracter malo = 14 - (10) = 4, sufijo bueno = desplaz.[15] = 1 -> s += 4
+  s=124 [lds_in_educatio] falla en j=14 (T='o', P='n'): caracter malo = 14 - (-1) = 15, sufijo bueno = desplaz.[15] = 1 -> s += 15
+  s=139 [nal_technology.] falla en j=14 (T='.', P='n'): caracter malo = 14 - (-1) = 15, sufijo bueno = desplaz.[15] = 1 -> s += 15
+Ocurrencias = [55]; alineaciones = 16; comparaciones = 32 (traza: 32)
+
+==================================================================
+3.3 Rabin-Karp (d = 256, q = 97)
+==================================================================
+h = 256^14 mod 97 = 61
+  paso 0: (256*0 + 105 ['i']) mod 97 = 8
+  paso 1: (256*8 + 110 ['n']) mod 97 = 24
+  paso 2: (256*24 + 116 ['t']) mod 97 = 52
+  paso 3: (256*52 + 101 ['e']) mod 97 = 27
+  paso 4: (256*27 + 108 ['l']) mod 97 = 36
+  paso 5: (256*36 + 108 ['l']) mod 97 = 12
+  paso 6: (256*12 + 105 ['i']) mod 97 = 73
+  paso 7: (256*73 + 103 ['g']) mod 97 = 70
+  paso 8: (256*70 + 101 ['e']) mod 97 = 76
+  paso 9: (256*76 + 110 ['n']) mod 97 = 69
+  paso 10: (256*69 + 99 ['c']) mod 97 = 12
+  paso 11: (256*12 + 101 ['e']) mod 97 = 69
+  paso 12: (256*69 + 32 [' ']) mod 97 = 42
+  paso 13: (256*42 + 105 ['i']) mod 97 = 90
+  paso 14: (256*90 + 110 ['n']) mod 97 = 64
+hash(P) = 64
+s | ventana | hash | resultado
+0 | according_to_va | 13 | 
+    t(1) = (256 * (13 - 97 * 61) + 114) mod 97 = 47
+1 | ccording_to_var | 47 | 
+    t(2) = (256 * (47 - 99 * 61) + 105) mod 97 = 14
+2 | cording_to_vari | 14 | 
+    t(3) = (256 * (14 - 99 * 61) + 111) mod 97 = 11
+3 | ording_to_vario | 11 | 
+4 | rding_to_variou | 37 | 
+5 | ding_to_various | 1 | 
+55 | intelligence_in | 64 | hash igual -> verificar -> OCURRENCIA
+129 | n_educational_t | 64 | hash igual -> verificar -> COLISION
+Ocurrencias = [55]; colisiones = 1; comparaciones = 156
+Con q = 13: colisiones = 7; comparaciones = 166
+Con q = 101: colisiones = 0; comparaciones = 155
+Con q = 1000000007: colisiones = 0; comparaciones = 155

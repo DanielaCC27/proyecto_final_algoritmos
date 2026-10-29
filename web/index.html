@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bibliometría IA generativa</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header>
+  <h1>Análisis de algoritmos en el contexto de la bibliometría</h1>
+  <p>Universidad del Quindío · Ingeniería de Sistemas y Computación · Corpus de 20 artículos sobre inteligencia artificial en educación</p>
+  <nav>
+    <button class="pestana activa" data-vista="articulos">Corpus</button>
+    <button class="pestana" data-vista="similitud">1. Similitud</button>
+    <button class="pestana" data-vista="clustering">2. Clustering</button>
+    <button class="pestana" data-vista="busqueda">3. Búsqueda</button>
+  </nav>
+</header>
+<main>
+  <section id="articulos" class="vista activa">
+    <h2>Corpus</h2>
+    <p class="ayuda">Título y autores extraídos de cada PDF con PDFBox y revisados a mano. Haga clic en un artículo para ver su abstract.</p>
+    <div id="listaArticulos"></div>
+  </section>
+
+  <section id="similitud" class="vista">
+    <h2>Requerimiento 1. Similitud textual</h2>
+    <p class="ayuda">Seleccione dos o más artículos. Se comparan los abstracts con 4 algoritmos clásicos (Levenshtein y Needleman-Wunsch sobre la secuencia de términos, coseno con TF-IDF y Jaccard) y 2 modelos de IA (promedio de vectores GloVe y Sentence-BERT all-MiniLM-L6-v2).</p>
+    <div id="seleccionArticulos" class="seleccion"></div>
+    <button id="botonSimilitud" class="principal">Comparar</button>
+    <div id="resultadoSimilitud"></div>
+  </section>
+
+  <section id="clustering" class="vista">
+    <h2>Requerimiento 2. Agrupamiento jerárquico</h2>
+    <p class="ayuda">Distancia = 1 − coseno entre las representaciones de los 20 abstracts. La correlación cofenética mide qué tan fiel es el dendrograma a las distancias originales; la silueta mide la coherencia de los grupos al cortar el árbol en k grupos.</p>
+    <div class="controles">
+      <label>Criterio
+        <select id="metodo">
+          <option value="single">Single linkage</option>
+          <option value="complete">Complete linkage</option>
+          <option value="average" selected>Average linkage</option>
+        </select>
+      </label>
+      <label>Representación
+        <select id="representacion">
+          <option value="tfidf" selected>TF-IDF (clásico)</option>
+          <option value="glove">GloVe (IA)</option>
+          <option value="sbert">Sentence-BERT (IA)</option>
+        </select>
+      </label>
+      <label>Grupos para colorear
+        <select id="k">
+          <option value="">mejor silueta</option>
+          <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+        </select>
+      </label>
+      <button id="botonClustering" class="principal">Agrupar</button>
+    </div>
+    <div id="resultadoClustering"></div>
+  </section>
+
+  <section id="busqueda" class="vista">
+    <h2>Requerimiento 3. Búsqueda de patrones</h2>
+    <p class="ayuda">Busca las ocurrencias exactas del patrón en los 20 abstracts con KMP, Boyer-Moore y Rabin-Karp (implementados sin indexOf ni find). Se miden por separado el preprocesamiento del patrón y la búsqueda (promedio de 50 repeticiones).</p>
+    <div class="controles">
+      <input id="patron" type="text" value="intelligence in" maxlength="200" aria-label="Patrón">
+      <label class="casilla"><input id="mayusculas" type="checkbox"> Distinguir mayúsculas</label>
+      <button id="botonBusqueda" class="principal">Buscar</button>
+    </div>
+    <div id="resultadoBusqueda"></div>
+  </section>
+</main>
+<footer>Proyecto final de Análisis de algoritmos · Daniela Castañeda Cartagena y David Esteban Perez Arevalo · Algoritmos implementados en Java sin librerías que los resuelvan</footer>
+<script src="app.js"></script>
+</body>
+</html>

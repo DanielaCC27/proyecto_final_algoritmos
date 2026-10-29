@@ -1,0 +1,8 @@
+bin/
+*.class
+.vscode/
+datos_extraidos/
+articulos/*.pdf
+embeddings/*.gz
+embeddings/*.zip
+__pycache__/

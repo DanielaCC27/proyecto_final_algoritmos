@@ -1,0 +1,76 @@
+Tiempos promedio de 200 repeticiones (ms). Texto = los 20 abstracts en minuscula.
+copias | n | patron | m | algoritmo | ocurrencias | preprocesamiento (ms) | busqueda (ms) | comparaciones | comparaciones/n
+1 | 28268 | ai | 2 | KMP | 170 | 0.00185 | 0.18088 | 30139 | 1.066
+1 | 28268 | ai | 2 | Boyer-Moore | 170 | 0.00565 | 0.20033 | 15745 | 0.557
+1 | 28268 | ai | 2 | Rabin-Karp | 170 | 0.00140 | 0.31677 | 28607 | 1.012
+1 | 28268 | data | 4 | KMP | 8 | 0.00071 | 0.07499 | 29268 | 1.035
+1 | 28268 | data | 4 | Boyer-Moore | 8 | 0.00236 | 0.05084 | 8210 | 0.290
+1 | 28268 | data | 4 | Rabin-Karp | 8 | 0.00080 | 0.40149 | 28297 | 1.001
+1 | 28268 | learning | 8 | KMP | 40 | 0.00066 | 0.08733 | 29201 | 1.033
+1 | 28268 | learning | 8 | Boyer-Moore | 40 | 0.00234 | 0.03272 | 4995 | 0.177
+1 | 28268 | learning | 8 | Rabin-Karp | 40 | 0.00055 | 0.31504 | 28581 | 1.011
+1 | 28268 | assessment | 10 | KMP | 37 | 0.00038 | 0.07935 | 30272 | 1.071
+1 | 28268 | assessment | 10 | Boyer-Moore | 37 | 0.00083 | 0.02412 | 4227 | 0.150
+1 | 28268 | assessment | 10 | Rabin-Karp | 37 | 0.00075 | 0.33846 | 28629 | 1.013
+1 | 28268 | generative artificial intelligence | 34 | KMP | 5 | 0.00058 | 0.07701 | 28812 | 1.019
+1 | 28268 | generative artificial intelligence | 34 | Boyer-Moore | 5 | 0.00130 | 0.01134 | 2110 | 0.075
+1 | 28268 | generative artificial intelligence | 34 | Rabin-Karp | 5 | 0.00139 | 0.30336 | 28405 | 1.005
+1 | 28268 | artificial intelligence in education | 36 | KMP | 6 | 0.00187 | 0.10778 | 30275 | 1.071
+1 | 28268 | artificial intelligence in education | 36 | Boyer-Moore | 6 | 0.00123 | 0.01813 | 2642 | 0.093
+1 | 28268 | artificial intelligence in education | 36 | Rabin-Karp | 6 | 0.00112 | 0.32265 | 28449 | 1.006
+1 | 28268 | systematic literature review on opportunities | 45 | KMP | 0 | 0.00048 | 0.09031 | 29966 | 1.060
+1 | 28268 | systematic literature review on opportunities | 45 | Boyer-Moore | 0 | 0.00107 | 0.01349 | 1615 | 0.057
+1 | 28268 | systematic literature review on opportunities | 45 | Rabin-Karp | 0 | 0.00143 | 0.33406 | 28224 | 0.998
+10 | 282680 | ai | 2 | KMP | 1700 | 0.00079 | 0.94671 | 301390 | 1.066
+10 | 282680 | ai | 2 | Boyer-Moore | 1700 | 0.00085 | 1.00541 | 157450 | 0.557
+10 | 282680 | ai | 2 | Rabin-Karp | 1700 | 0.00064 | 2.98278 | 286079 | 1.012
+10 | 282680 | data | 4 | KMP | 80 | 0.00047 | 0.86045 | 292680 | 1.035
+10 | 282680 | data | 4 | Boyer-Moore | 80 | 0.00075 | 0.51855 | 82109 | 0.290
+10 | 282680 | data | 4 | Rabin-Karp | 80 | 0.00119 | 3.93083 | 282997 | 1.001
+10 | 282680 | learning | 8 | KMP | 400 | 0.00041 | 0.68357 | 292010 | 1.033
+10 | 282680 | learning | 8 | Boyer-Moore | 400 | 0.00089 | 0.26143 | 49950 | 0.177
+10 | 282680 | learning | 8 | Rabin-Karp | 400 | 0.00050 | 2.58209 | 285873 | 1.011
+10 | 282680 | assessment | 10 | KMP | 370 | 0.00034 | 0.68884 | 302720 | 1.071
+10 | 282680 | assessment | 10 | Boyer-Moore | 370 | 0.00105 | 0.22089 | 42261 | 0.150
+10 | 282680 | assessment | 10 | Rabin-Karp | 370 | 0.00055 | 2.58270 | 286371 | 1.013
+10 | 282680 | generative artificial intelligence | 34 | KMP | 50 | 0.00038 | 0.55643 | 288120 | 1.019
+10 | 282680 | generative artificial intelligence | 34 | Boyer-Moore | 50 | 0.00102 | 0.09720 | 21361 | 0.076
+10 | 282680 | generative artificial intelligence | 34 | Rabin-Karp | 50 | 0.00081 | 2.57048 | 284347 | 1.006
+10 | 282680 | artificial intelligence in education | 36 | KMP | 60 | 0.00038 | 0.64198 | 302750 | 1.071
+10 | 282680 | artificial intelligence in education | 36 | Boyer-Moore | 60 | 0.00137 | 0.12069 | 26465 | 0.094
+10 | 282680 | artificial intelligence in education | 36 | Rabin-Karp | 60 | 0.00085 | 2.55548 | 284805 | 1.008
+10 | 282680 | systematic literature review on opportunities | 45 | KMP | 0 | 0.00059 | 0.66622 | 299660 | 1.060
+10 | 282680 | systematic literature review on opportunities | 45 | Boyer-Moore | 0 | 0.00141 | 0.08854 | 16330 | 0.058
+10 | 282680 | systematic literature review on opportunities | 45 | Rabin-Karp | 0 | 0.00105 | 2.56477 | 282636 | 1.000
+100 | 2826800 | ai | 2 | KMP | 17000 | 0.00103 | 7.68328 | 3013900 | 1.066
+100 | 2826800 | ai | 2 | Boyer-Moore | 17000 | 0.00164 | 8.41280 | 1574500 | 0.557
+100 | 2826800 | ai | 2 | Rabin-Karp | 17000 | 0.00118 | 25.07968 | 2860799 | 1.012
+100 | 2826800 | data | 4 | KMP | 800 | 0.00105 | 7.60746 | 2926800 | 1.035
+100 | 2826800 | data | 4 | Boyer-Moore | 800 | 0.00173 | 4.65309 | 821099 | 0.290
+100 | 2826800 | data | 4 | Rabin-Karp | 800 | 0.00154 | 29.78515 | 2829997 | 1.001
+100 | 2826800 | learning | 8 | KMP | 4000 | 0.00102 | 7.15200 | 2920100 | 1.033
+100 | 2826800 | learning | 8 | Boyer-Moore | 4000 | 0.00133 | 2.60544 | 499500 | 0.177
+100 | 2826800 | learning | 8 | Rabin-Karp | 4000 | 0.00127 | 25.36865 | 2858793 | 1.011
+100 | 2826800 | assessment | 10 | KMP | 3700 | 0.00105 | 7.07989 | 3027200 | 1.071
+100 | 2826800 | assessment | 10 | Boyer-Moore | 3700 | 0.00118 | 2.00218 | 422601 | 0.149
+100 | 2826800 | assessment | 10 | Rabin-Karp | 3700 | 0.00115 | 25.36889 | 2863791 | 1.013
+100 | 2826800 | generative artificial intelligence | 34 | KMP | 500 | 0.00113 | 7.39192 | 2881200 | 1.019
+100 | 2826800 | generative artificial intelligence | 34 | Boyer-Moore | 500 | 0.00158 | 1.08387 | 213871 | 0.076
+100 | 2826800 | generative artificial intelligence | 34 | Rabin-Karp | 500 | 0.00154 | 25.66370 | 2843767 | 1.006
+100 | 2826800 | artificial intelligence in education | 36 | KMP | 600 | 0.00111 | 7.52562 | 3027500 | 1.071
+100 | 2826800 | artificial intelligence in education | 36 | Boyer-Moore | 600 | 0.00168 | 1.22030 | 264695 | 0.094
+100 | 2826800 | artificial intelligence in education | 36 | Rabin-Karp | 600 | 0.00160 | 25.55981 | 2848365 | 1.008
+100 | 2826800 | systematic literature review on opportunities | 45 | KMP | 0 | 0.00110 | 7.46083 | 2996600 | 1.060
+100 | 2826800 | systematic literature review on opportunities | 45 | Boyer-Moore | 0 | 0.00126 | 0.90778 | 163480 | 0.058
+100 | 2826800 | systematic literature review on opportunities | 45 | Rabin-Karp | 0 | 0.00166 | 25.56846 | 2826756 | 1.000
+
+Peor caso: texto de 100 000 letras 'a' y patron 'aaaaaaaaaa' (m = 10, n - m + 1 ocurrencias)
+KMP | preprocesamiento 0.00107 ms | busqueda 2.59817 ms | comparaciones 100000 | ocurrencias 99991
+Boyer-Moore | preprocesamiento 0.00187 ms | busqueda 2.46451 ms | comparaciones 999910 | ocurrencias 99991
+Rabin-Karp | preprocesamiento 0.00085 ms | busqueda 1.88302 ms | comparaciones 1099901 | ocurrencias 99991
+
+Rabin-Karp con distintos q, patron 'assessment', los 20 abstracts (copias = 1)
+q = 3 | busqueda 0.57177 ms | colisiones 9364 | comparaciones 38663 | ocurrencias 37
+q = 13 | busqueda 0.32532 ms | colisiones 2206 | comparaciones 30996 | ocurrencias 37
+q = 97 | busqueda 0.26809 ms | colisiones 293 | comparaciones 28941 | ocurrencias 37
+q = 1000000007 | busqueda 0.25821 ms | colisiones 0 | comparaciones 28629 | ocurrencias 37

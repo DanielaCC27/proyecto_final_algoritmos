@@ -1,0 +1,6 @@
+bin/
+articulos/
+resultados/
+datos_extraidos/
+.vscode/
+*.class
