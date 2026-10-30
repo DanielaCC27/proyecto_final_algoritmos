@@ -1,6 +1,8 @@
 # Análisis de algoritmos en el contexto de la bibliometría
 
-Proyecto final de Análisis de algoritmos, Universidad del Quindío (Ingeniería de Sistemas y Computación, docente Sergio Augusto Cardona Torres). Integrantes: Daniela Castañeda Cartagena y David Esteban Perez Arevalo. Continúa el Seguimiento 2026-2 (ranking de términos sin comparaciones) sobre el mismo corpus: 20 artículos en PDF sobre inteligencia artificial en educación. Todo el procesamiento se hace sobre el abstract de cada artículo; el título y los autores se usan para identificar cada resultado.
+Proyecto final de Análisis de algoritmos, Universidad del Quindío (Ingeniería de Sistemas y Computación, docente Sergio Augusto Cardona Torres). Integrantes: Daniela Castañeda Cartagena y David Esteban Perez Arevalo. Continúa el Seguimiento 2026-2 (ranking de términos sin comparaciones) sobre el mismo corpus (repositorio del seguimiento: https://github.com/DanielaCC27/seguimiento_analisis_algoritmos): 20 artículos en PDF sobre inteligencia artificial en educación. Todo el procesamiento se hace sobre el abstract de cada artículo; el título y los autores se usan para identificar cada resultado.
+
+Código del proyecto: https://github.com/DanielaCC27/proyecto_final_algoritmos
 
 La aplicación web tiene tres módulos:
 

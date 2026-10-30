@@ -1,4 +1,4 @@
-# Imagen para desplegar la aplicacion web (Render, Railway, Fly.io o cualquier servidor con Docker)
+# Imagen para desplegar la aplicacion web (Azure Container Apps o cualquier servidor con Docker)
 FROM eclipse-temurin:21-jdk AS compilacion
 WORKDIR /app
 COPY src src
