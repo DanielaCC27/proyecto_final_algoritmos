@@ -4,8 +4,8 @@ REQUERIMIENTO 1. Caso de estudio: articulo 11 vs articulo 16
 ==================================================================
 A = A scoping review on how generative artificial intelligence transforms assessment in higher education (Qi Xia, Xiaojing Weng, Fan Ouyang, Tzung Jin Lin, Thomas K.F. Chiu)
 B = Generative Artificial Intelligence in Tertiary Education: Assessment Redesign Principles and Considerations (Che Yee Lye, Lyndon Lim)
-Terminos de A (n = 114): generative artificial intelligence provides opportunities challenges higher education existing literature properly investigated technology impact assessment higher education scoping review took forward thinking approach investigate generative artificial intelligence transforms assessment higher education used prisma extension scoping reviews select articles review report results screening retrieved articles selected empirical studies analysis articles published used three levels students teachers institutions analyses articles results suggested assessment transformed cultivate students self regulated learning skills responsible learning integrity successfully transform assessment higher education review suggested teacher professional development activities assessment ai digital literacy provided ii teachers beliefs human ai assessment strengthened iii teachers innovative holistic teaching reflect assessment transformation educational institutions recommended review rethink assessment policies provide inter disciplinary programs teaching
-Terminos de B (m = 93): emergence generative artificial intelligence ai chatgpt sparked significant assessment concerns tertiary education assessment concerns largely revolved around academic integrity issues students plagiarism cheating nonetheless critical consider generative ai models trained information retrieved internet produce biased discriminatory outputs hallucination issues large language models generative ai acts provide made untruthful outputs article considers affordances challenges generative ai specific assessments tertiary education illustrates considerations assessment redesign existence generative ai proposes avoid adopt aaa principle rethink redesign assessments argues generative ai tools emerge exponentially hence engaging arms race generative ai policing use technologies address fundamental issues assessments
+Terminos de A (n = 110): generative artificial intelligence provides opportunities challenges higher education existing literature properly investigated technology impact assessment higher education scoping review took forward thinking approach investigate generative artificial intelligence transforms assessment higher education prisma extension scoping reviews select articles review report screening retrieved articles selected empirical studies analysis articles published three levels students teachers institutions analyses articles suggested assessment transformed cultivate students self regulated learning skills responsible learning integrity successfully transform assessment higher education review suggested teacher professional development activities assessment ai digital literacy provided ii teachers beliefs human ai assessment strengthened iii teachers innovative holistic teaching reflect assessment transformation educational institutions recommended review rethink assessment policies provide inter disciplinary programs teaching
+Terminos de B (m = 98): emergence generative artificial intelligence ai chatgpt sparked significant assessment concerns within tertiary education assessment concerns largely revolved around academic integrity issues students plagiarism cheating nonetheless critical consider generative ai models trained information retrieved internet produce biased discriminatory outputs hallucination issues large language models upon generative ai acts provide made up untruthful outputs article considers affordances challenges generative ai specific assessments within tertiary education illustrates considerations assessment redesign existence generative ai proposes against avoid adopt aaa principle rethink redesign assessments argues generative ai tools emerge exponentially hence engaging arms race against generative ai policing technologies address fundamental issues assessments
 
 ==================================================================
 1.1 Levenshtein: subcaso con los 7 primeros terminos
@@ -20,8 +20,9 @@ opportunities      5             5             5             4             3    
 challenges         6             6             6             5             4             4             4             4
 higher             7             7             7             6             5             5             5             5
 Distancia del subcaso = 5; similitud = 1 - 5/7 = 0.2857
-Abstracts completos: D[114][93] = 108; similitud = 1 - 108/114 = 0.0526
-Celdas llenadas: 10810
+Abstracts completos: D[110][98] = 104; similitud = 1 - 104/110 = 0.0545
+Celdas llenadas: 10989
+Subcaso con tres versiones: recursivo = 5 (72958 llamadas), memorizacion = 5 (148 llamadas), tabulacion = 5 (64 celdas)
 
 ==================================================================
 1.2 Needleman-Wunsch (+1, -1, -1): subcaso con los 7 primeros terminos
@@ -38,13 +39,13 @@ higher            -7            -7            -6            -4            -2    
 Alineamiento A: - | generative | artificial | intelligence | provides | opportunities | challenges | higher
 Alineamiento B: emergence | generative | artificial | intelligence | - | ai | chatgpt | sparked
 Puntaje = -2; coincidencias = 3; longitud = 8; similitud = 0.3750
-Abstracts completos: puntaje = -100, coincidencias = 8, longitud del alineamiento = 116, similitud = 0.0690
-Terminos emparejados en orden: generative artificial intelligence assessment education assessment education assessment 
+Abstracts completos: puntaje = -97, coincidencias = 7, longitud del alineamiento = 111, similitud = 0.0631
+Terminos emparejados en orden: generative artificial intelligence assessment retrieved education ai 
 
 ==================================================================
 1.3 Coseno con TF-IDF (idf = log10(20 / df))
 ==================================================================
-Vocabulario del corpus V = 987
+Vocabulario del corpus V = 990
 termino | tfA | tfB | df | idf | wA | wB | wA*wB
 artificial | 2 | 1 | 20 | 0.0000 | 0.0000 | 0.0000 | 0.0000
 intelligence | 2 | 1 | 20 | 0.0000 | 0.0000 | 0.0000 | 0.0000
@@ -59,7 +60,7 @@ retrieved | 1 | 1 | 2 | 1.0000 | 1.0000 | 1.0000 | 1.0000
 integrity | 1 | 1 | 2 | 1.0000 | 1.0000 | 1.0000 | 1.0000
 rethink | 1 | 1 | 2 | 1.0000 | 1.0000 | 1.0000 | 1.0000
 Producto punto A.B = 10.9763
-|A| = 9.8019   |B| = 11.1837
+|A| = 9.7269   |B| = 11.7037
 Terminos de A con mayor peso:
   assessment: tf = 8, df = 10, w = 2.4082
   higher: tf = 4, df = 6, w = 2.0915
@@ -72,17 +73,17 @@ Terminos de B con mayor peso:
   tertiary: tf = 2, df = 1, w = 2.6021
   outputs: tf = 2, df = 1, w = 2.6021
   redesign: tf = 2, df = 1, w = 2.6021
+  against: tf = 2, df = 1, w = 2.6021
   assessments: tf = 3, df = 3, w = 2.4717
-  issues: tf = 3, df = 4, w = 2.0969
-cos(theta) = 10.9763 / (9.8019 * 11.1837) = 0.1001
-theta = 84.2534 grados
+cos(theta) = 10.9763 / (9.7269 * 11.7037) = 0.0964
+theta = 84.4671 grados
 
 ==================================================================
 1.4 Jaccard
 ==================================================================
-|A| = 81  |B| = 69  |A n B| = 12  |A u B| = 138
+|A| = 79  |B| = 72  |A n B| = 12  |A u B| = 139
 A n B = [education, retrieved, assessment, integrity, ai, intelligence, provide, challenges, students, generative, rethink, artificial]
-J = 12 / 138 = 0.0870
+J = 12 / 139 = 0.0863
 
 ==================================================================
 1.5 GloVe 100d: promedio de vectores de palabra
@@ -91,14 +92,14 @@ Primeras 5 dimensiones de los 3 primeros terminos de A:
 generative = (0.3524, 0.7799, 0.1549, 0.1126, -0.1591, ...)
 artificial = (0.3455, 0.3144, -0.0313, 0.6368, 0.2727, ...)
 intelligence = (-0.3110, -0.4329, 0.7773, -0.3112, 0.0529, ...)
-A: terminos con vector = 114 de 114
+A: terminos con vector = 110 de 110
 Faltan en GloVe (A): 
-B: terminos con vector = 92 de 93
+B: terminos con vector = 97 de 98
 Faltan en GloVe (B): chatgpt 
-vector promedio A (5 primeras) = (-0.0663, 0.2645, -0.0602, 0.2184, 0.0156, ...)
-vector promedio B (5 primeras) = (-0.0835, 0.2641, 0.1889, 0.1685, -0.0400, ...)
-A.B = 7.5719  |A| = 3.1999  |B| = 2.5323
-cos = 0.9345   angulo = 20.8591 grados   euclidiana = 1.2280
+vector promedio A (5 primeras) = (-0.0551, 0.2596, -0.0628, 0.2237, 0.0215, ...)
+vector promedio B (5 primeras) = (-0.0830, 0.2496, 0.2064, 0.1639, -0.0265, ...)
+A.B = 7.6522  |A| = 3.1790  |B| = 2.5733
+cos = 0.9354   angulo = 20.7007 grados   euclidiana = 1.1929
 Rango de coseno GloVe en los 190 pares: ver resultados/similitud_glove.csv
 
 ==================================================================
@@ -118,124 +119,124 @@ cos = 0.7355   angulo = 42.6513 grados   euclidiana = 0.7273 (= raiz(2 - 2cos) =
 ==================================================================
 1.7 Resumen del caso de estudio
 ==================================================================
-Levenshtein = 0.0526
-Needleman-Wunsch = 0.0690
-Coseno TF-IDF = 0.1001
-Jaccard = 0.0870
-GloVe (coseno) = 0.9345
+Levenshtein = 0.0545
+Needleman-Wunsch = 0.0631
+Coseno TF-IDF = 0.0964
+Jaccard = 0.0863
+GloVe (coseno) = 0.9354
 Sentence-BERT (coseno) = 0.7355
 
 ==================================================================
 REQUERIMIENTO 2. Matriz de distancias d = 1 - coseno(TF-IDF)
 ==================================================================
          1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20
-    1 0.00 0.96 0.98 0.98 0.97 0.97 0.99 0.97 0.96 0.98 0.92 0.96 0.95 0.97 0.96 1.00 0.98 0.99 0.98 0.96
-    2 0.96 0.00 0.96 0.96 0.86 0.80 0.92 0.94 0.84 0.93 0.91 0.92 0.96 0.97 0.95 0.98 0.95 0.93 0.92 0.86
-    3 0.98 0.96 0.00 0.99 0.96 0.97 0.97 0.96 0.98 0.97 0.96 0.95 0.97 0.98 0.94 0.99 0.96 0.99 0.98 0.98
-    4 0.98 0.96 0.99 0.00 0.99 0.98 0.98 0.96 0.98 0.94 0.97 0.97 0.99 0.99 0.98 0.99 0.98 0.99 0.98 0.97
-    5 0.97 0.86 0.96 0.99 0.00 0.87 0.94 0.91 0.90 0.92 0.95 0.96 0.98 0.98 0.98 0.96 0.91 0.97 0.98 0.92
-    6 0.97 0.80 0.97 0.98 0.87 0.00 0.94 0.97 0.84 0.97 0.96 0.94 0.97 0.95 0.98 0.96 0.98 0.97 0.97 0.90
-    7 0.99 0.92 0.97 0.98 0.94 0.94 0.00 0.99 0.94 0.99 0.96 0.96 0.97 0.99 0.96 0.98 0.98 0.97 0.97 0.95
-    8 0.97 0.94 0.96 0.96 0.91 0.97 0.99 0.00 0.96 0.86 0.93 0.95 0.96 0.98 0.93 0.99 0.95 0.98 0.98 0.95
-    9 0.96 0.84 0.98 0.98 0.90 0.84 0.94 0.96 0.00 0.97 0.95 0.92 0.99 0.96 0.95 0.96 0.96 0.94 0.99 0.89
-   10 0.98 0.93 0.97 0.94 0.92 0.97 0.99 0.86 0.97 0.00 0.95 0.98 0.98 0.98 0.96 0.98 0.93 0.98 0.96 0.96
-   11 0.92 0.91 0.96 0.97 0.95 0.96 0.96 0.93 0.95 0.95 0.00 0.92 0.94 0.94 0.94 0.90 0.91 0.97 0.96 0.91
-   12 0.96 0.92 0.95 0.97 0.96 0.94 0.96 0.95 0.92 0.98 0.92 0.00 0.97 0.98 0.94 0.99 0.98 0.97 0.96 0.86
-   13 0.95 0.96 0.97 0.99 0.98 0.97 0.97 0.96 0.99 0.98 0.94 0.97 0.00 0.99 0.98 0.97 0.96 0.96 0.98 0.93
-   14 0.97 0.97 0.98 0.99 0.98 0.95 0.99 0.98 0.96 0.98 0.94 0.98 0.99 0.00 0.96 0.98 0.98 0.97 0.99 0.96
-   15 0.96 0.95 0.94 0.98 0.98 0.98 0.96 0.93 0.95 0.96 0.94 0.94 0.98 0.96 0.00 0.96 0.97 0.97 0.97 0.92
-   16 1.00 0.98 0.99 0.99 0.96 0.96 0.98 0.99 0.96 0.98 0.90 0.99 0.97 0.98 0.96 0.00 0.97 0.96 0.94 0.98
-   17 0.98 0.95 0.96 0.98 0.91 0.98 0.98 0.95 0.96 0.93 0.91 0.98 0.96 0.98 0.97 0.97 0.00 0.98 0.97 0.90
-   18 0.99 0.93 0.99 0.99 0.97 0.97 0.97 0.98 0.94 0.98 0.97 0.97 0.96 0.97 0.97 0.96 0.98 0.00 0.96 0.96
-   19 0.98 0.92 0.98 0.98 0.98 0.97 0.97 0.98 0.99 0.96 0.96 0.96 0.98 0.99 0.97 0.94 0.97 0.96 0.00 0.98
-   20 0.96 0.86 0.98 0.97 0.92 0.90 0.95 0.95 0.89 0.96 0.91 0.86 0.93 0.96 0.92 0.98 0.90 0.96 0.98 0.00
+    1 0.00 0.96 0.98 0.98 0.98 0.97 0.99 0.97 0.96 0.98 0.92 0.96 0.96 0.97 0.96 1.00 0.99 0.99 0.98 0.96
+    2 0.96 0.00 0.96 0.96 0.86 0.82 0.93 0.94 0.84 0.93 0.92 0.91 0.96 0.97 0.96 0.98 0.95 0.93 0.92 0.87
+    3 0.98 0.96 0.00 0.98 0.96 0.97 0.97 0.96 0.98 0.97 0.96 0.95 0.97 0.98 0.95 1.00 0.96 0.99 0.98 0.98
+    4 0.98 0.96 0.98 0.00 0.99 0.98 0.98 0.96 0.98 0.94 0.97 0.98 0.99 0.99 0.98 0.99 0.98 0.99 0.98 0.98
+    5 0.98 0.86 0.96 0.99 0.00 0.86 0.94 0.91 0.90 0.93 0.95 0.96 0.98 0.98 0.98 0.95 0.92 0.97 0.98 0.92
+    6 0.97 0.82 0.97 0.98 0.86 0.00 0.94 0.98 0.84 0.98 0.96 0.94 0.97 0.95 0.98 0.96 0.98 0.97 0.97 0.90
+    7 0.99 0.93 0.97 0.98 0.94 0.94 0.00 0.99 0.93 0.99 0.96 0.96 0.97 0.99 0.96 0.98 0.99 0.97 0.98 0.95
+    8 0.97 0.94 0.96 0.96 0.91 0.98 0.99 0.00 0.97 0.87 0.94 0.96 0.96 0.98 0.95 1.00 0.95 0.98 0.99 0.96
+    9 0.96 0.84 0.98 0.98 0.90 0.84 0.93 0.97 0.00 0.97 0.95 0.92 0.99 0.96 0.96 0.96 0.96 0.94 0.99 0.89
+   10 0.98 0.93 0.97 0.94 0.93 0.98 0.99 0.87 0.97 0.00 0.95 0.98 0.98 0.99 0.96 0.98 0.95 0.99 0.97 0.96
+   11 0.92 0.92 0.96 0.97 0.95 0.96 0.96 0.94 0.95 0.95 0.00 0.92 0.94 0.94 0.94 0.90 0.92 0.97 0.96 0.92
+   12 0.96 0.91 0.95 0.98 0.96 0.94 0.96 0.96 0.92 0.98 0.92 0.00 0.97 0.98 0.94 0.98 0.98 0.97 0.97 0.86
+   13 0.96 0.96 0.97 0.99 0.98 0.97 0.97 0.96 0.99 0.98 0.94 0.97 0.00 0.99 0.99 0.98 0.96 0.96 0.98 0.94
+   14 0.97 0.97 0.98 0.99 0.98 0.95 0.99 0.98 0.96 0.99 0.94 0.98 0.99 0.00 0.96 0.98 0.99 0.97 1.00 0.96
+   15 0.96 0.96 0.95 0.98 0.98 0.98 0.96 0.95 0.96 0.96 0.94 0.94 0.99 0.96 0.00 0.97 0.97 0.97 0.98 0.93
+   16 1.00 0.98 1.00 0.99 0.95 0.96 0.98 1.00 0.96 0.98 0.90 0.98 0.98 0.98 0.97 0.00 0.97 0.96 0.95 0.98
+   17 0.99 0.95 0.96 0.98 0.92 0.98 0.99 0.95 0.96 0.95 0.92 0.98 0.96 0.99 0.97 0.97 0.00 0.98 0.97 0.91
+   18 0.99 0.93 0.99 0.99 0.97 0.97 0.97 0.98 0.94 0.99 0.97 0.97 0.96 0.97 0.97 0.96 0.98 0.00 0.96 0.97
+   19 0.98 0.92 0.98 0.98 0.98 0.97 0.98 0.99 0.99 0.97 0.96 0.97 0.98 1.00 0.98 0.95 0.97 0.96 0.00 0.98
+   20 0.96 0.87 0.98 0.98 0.92 0.90 0.95 0.96 0.89 0.96 0.92 0.86 0.94 0.96 0.93 0.98 0.91 0.97 0.98 0.00
 
 ==================================================================
 Fusiones con single linkage
 ==================================================================
-Paso 1: G20 = {2} + {6}  a distancia 0.8016  (tamano 2)
-Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8402  (tamano 3)
-Paso 3: G22 = {12} + {20}  a distancia 0.8581  (tamano 2)
-Paso 4: G23 = {5} + G21{9,2,6}  a distancia 0.8596  (tamano 4)
-Paso 5: G24 = {8} + {10}  a distancia 0.8633  (tamano 2)
-Paso 6: G25 = G22{12,20} + G23{5,9,2,6}  a distancia 0.8646  (tamano 6)
-Paso 7: G26 = {11} + {16}  a distancia 0.8999  (tamano 2)
-Paso 8: G27 = {17} + G25{12,20,5,9,2,6}  a distancia 0.9037  (tamano 7)
-Paso 9: G28 = G26{11,16} + G27{17,12,20,5,9,2,6}  a distancia 0.9093  (tamano 9)
-Paso 10: G29 = G24{8,10} + G28{11,16,17,12,20,5,9,2,6}  a distancia 0.9108  (tamano 11)
-Paso 11: G30 = {1} + G29{8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9162  (tamano 12)
-Paso 12: G31 = {19} + G30{1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9200  (tamano 13)
-Paso 13: G32 = {7} + G31{19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9244  (tamano 14)
-Paso 14: G33 = {15} + G32{7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9248  (tamano 15)
-Paso 15: G34 = {18} + G33{15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9295  (tamano 16)
-Paso 16: G35 = {13} + G34{18,15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9332  (tamano 17)
-Paso 17: G36 = {14} + G35{13,18,15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9359  (tamano 18)
-Paso 18: G37 = {4} + G36{14,13,18,15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9431  (tamano 19)
-Paso 19: G38 = {3} + G37{4,14,13,18,15,7,19,1,8,10,11,16,17,12,20,5,9,2,6}  a distancia 0.9447  (tamano 20)
-Correlacion cofenetica = 0.7568
-  silueta k=2: 0.0140
-  silueta k=3: 0.0131
-  silueta k=4: 0.0088
-  silueta k=5: 0.0055
-  silueta k=6: 0.0031
+Paso 1: G20 = {2} + {6}  a distancia 0.8234  (tamano 2)
+Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8395  (tamano 3)
+Paso 3: G22 = {5} + G21{9,2,6}  a distancia 0.8581  (tamano 4)
+Paso 4: G23 = {12} + {20}  a distancia 0.8647  (tamano 2)
+Paso 5: G24 = {8} + {10}  a distancia 0.8662  (tamano 2)
+Paso 6: G25 = G22{5,9,2,6} + G23{12,20}  a distancia 0.8662  (tamano 6)
+Paso 7: G26 = {11} + {16}  a distancia 0.9036  (tamano 2)
+Paso 8: G27 = {17} + G25{5,9,2,6,12,20}  a distancia 0.9090  (tamano 7)
+Paso 9: G28 = G24{8,10} + G27{17,5,9,2,6,12,20}  a distancia 0.9125  (tamano 9)
+Paso 10: G29 = G26{11,16} + G28{8,10,17,5,9,2,6,12,20}  a distancia 0.9156  (tamano 11)
+Paso 11: G30 = {19} + G29{11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9180  (tamano 12)
+Paso 12: G31 = {1} + G30{19,11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9220  (tamano 13)
+Paso 13: G32 = {18} + G31{1,19,11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9285  (tamano 14)
+Paso 14: G33 = {7} + G32{18,1,19,11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9290  (tamano 15)
+Paso 15: G34 = {15} + G33{7,18,1,19,11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9308  (tamano 16)
+Paso 16: G35 = {13} + G34{15,7,18,1,19,11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9351  (tamano 17)
+Paso 17: G36 = {14} + G35{13,15,7,18,1,19,11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9355  (tamano 18)
+Paso 18: G37 = {4} + G36{14,13,15,7,18,1,19,11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9443  (tamano 19)
+Paso 19: G38 = {3} + G37{4,14,13,15,7,18,1,19,11,16,8,10,17,5,9,2,6,12,20}  a distancia 0.9476  (tamano 20)
+Correlacion cofenetica = 0.7537
+  silueta k=2: 0.0124
+  silueta k=3: 0.0119
+  silueta k=4: 0.0065
+  silueta k=5: 0.0044
+  silueta k=6: 0.0030
 
 ==================================================================
 Fusiones con complete linkage
 ==================================================================
-Paso 1: G20 = {2} + {6}  a distancia 0.8016  (tamano 2)
-Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8442  (tamano 3)
-Paso 3: G22 = {12} + {20}  a distancia 0.8581  (tamano 2)
-Paso 4: G23 = {8} + {10}  a distancia 0.8633  (tamano 2)
-Paso 5: G24 = {11} + {16}  a distancia 0.8999  (tamano 2)
-Paso 6: G25 = {5} + G21{9,2,6}  a distancia 0.9019  (tamano 4)
-Paso 7: G26 = {15} + G22{12,20}  a distancia 0.9353  (tamano 3)
-Paso 8: G27 = {7} + G25{5,9,2,6}  a distancia 0.9395  (tamano 5)
-Paso 9: G28 = {17} + G23{8,10}  a distancia 0.9461  (tamano 3)
-Paso 10: G29 = {1} + {13}  a distancia 0.9546  (tamano 2)
-Paso 11: G30 = {19} + G24{11,16}  a distancia 0.9581  (tamano 3)
-Paso 12: G31 = {18} + G26{15,12,20}  a distancia 0.9667  (tamano 4)
-Paso 13: G32 = {3} + G28{17,8,10}  a distancia 0.9689  (tamano 4)
-Paso 14: G33 = G27{7,5,9,2,6} + G31{18,15,12,20}  a distancia 0.9791  (tamano 9)
-Paso 15: G34 = {14} + G32{3,17,8,10}  a distancia 0.9828  (tamano 5)
-Paso 16: G35 = {4} + G29{1,13}  a distancia 0.9853  (tamano 3)
-Paso 17: G36 = G30{19,11,16} + G33{7,5,9,2,6,18,15,12,20}  a distancia 0.9872  (tamano 12)
-Paso 18: G37 = G34{14,3,17,8,10} + G35{4,1,13}  a distancia 0.9937  (tamano 8)
-Paso 19: G38 = G36{19,11,16,7,5,9,2,6,18,15,12,20} + G37{14,3,17,8,10,4,1,13}  a distancia 0.9990  (tamano 20)
-Correlacion cofenetica = 0.7303
-  silueta k=2: 0.0164
-  silueta k=3: 0.0157
-  silueta k=4: 0.0190
-  silueta k=5: 0.0192
-  silueta k=6: 0.0204
+Paso 1: G20 = {2} + {6}  a distancia 0.8234  (tamano 2)
+Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8446  (tamano 3)
+Paso 3: G22 = {12} + {20}  a distancia 0.8647  (tamano 2)
+Paso 4: G23 = {8} + {10}  a distancia 0.8662  (tamano 2)
+Paso 5: G24 = {5} + G21{9,2,6}  a distancia 0.9025  (tamano 4)
+Paso 6: G25 = {11} + {16}  a distancia 0.9036  (tamano 2)
+Paso 7: G26 = {15} + G22{12,20}  a distancia 0.9410  (tamano 3)
+Paso 8: G27 = {7} + G24{5,9,2,6}  a distancia 0.9412  (tamano 5)
+Paso 9: G28 = {17} + G23{8,10}  a distancia 0.9484  (tamano 3)
+Paso 10: G29 = {1} + {13}  a distancia 0.9565  (tamano 2)
+Paso 11: G30 = {19} + G25{11,16}  a distancia 0.9613  (tamano 3)
+Paso 12: G31 = {14} + {18}  a distancia 0.9676  (tamano 2)
+Paso 13: G32 = {3} + G28{17,8,10}  a distancia 0.9696  (tamano 4)
+Paso 14: G33 = G26{15,12,20} + G31{14,18}  a distancia 0.9795  (tamano 5)
+Paso 15: G34 = {4} + G32{3,17,8,10}  a distancia 0.9849  (tamano 5)
+Paso 16: G35 = G27{7,5,9,2,6} + G30{19,11,16}  a distancia 0.9872  (tamano 8)
+Paso 17: G36 = G29{1,13} + G34{4,3,17,8,10}  a distancia 0.9890  (tamano 7)
+Paso 18: G37 = G33{15,12,20,14,18} + G36{1,13,4,3,17,8,10}  a distancia 0.9919  (tamano 12)
+Paso 19: G38 = G35{7,5,9,2,6,19,11,16} + G37{15,12,20,14,18,1,13,4,3,17,8,10}  a distancia 0.9990  (tamano 20)
+Correlacion cofenetica = 0.6779
+  silueta k=2: 0.0101
+  silueta k=3: 0.0097
+  silueta k=4: 0.0124
+  silueta k=5: 0.0197
+  silueta k=6: 0.0190
 
 ==================================================================
 Fusiones con average linkage
 ==================================================================
-Paso 1: G20 = {2} + {6}  a distancia 0.8016  (tamano 2)
-Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8422  (tamano 3)
-Paso 3: G22 = {12} + {20}  a distancia 0.8581  (tamano 2)
-Paso 4: G23 = {8} + {10}  a distancia 0.8633  (tamano 2)
-Paso 5: G24 = {5} + G21{9,2,6}  a distancia 0.8756  (tamano 4)
-Paso 6: G25 = {11} + {16}  a distancia 0.8999  (tamano 2)
-Paso 7: G26 = G22{12,20} + G24{5,9,2,6}  a distancia 0.9137  (tamano 6)
-Paso 8: G27 = {17} + G25{11,16}  a distancia 0.9400  (tamano 3)
-Paso 9: G28 = {7} + G26{12,20,5,9,2,6}  a distancia 0.9413  (tamano 7)
-Paso 10: G29 = {3} + {15}  a distancia 0.9447  (tamano 2)
-Paso 11: G30 = {4} + G23{8,10}  a distancia 0.9528  (tamano 3)
-Paso 12: G31 = G27{17,11,16} + G28{7,12,20,5,9,2,6}  a distancia 0.9540  (tamano 10)
-Paso 13: G32 = {1} + {13}  a distancia 0.9546  (tamano 2)
-Paso 14: G33 = {18} + G31{17,11,16,7,12,20,5,9,2,6}  a distancia 0.9614  (tamano 11)
-Paso 15: G34 = G29{3,15} + G33{18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9629  (tamano 13)
-Paso 16: G35 = G30{4,8,10} + G34{3,15,18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9656  (tamano 16)
-Paso 17: G36 = {19} + G35{4,8,10,3,15,18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9677  (tamano 17)
-Paso 18: G37 = G32{1,13} + G36{19,4,8,10,3,15,18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9690  (tamano 19)
-Paso 19: G38 = {14} + G37{1,13,19,4,8,10,3,15,18,17,11,16,7,12,20,5,9,2,6}  a distancia 0.9741  (tamano 20)
-Correlacion cofenetica = 0.8049
-  silueta k=2: 0.0186
-  silueta k=3: 0.0142
-  silueta k=4: 0.0089
-  silueta k=5: 0.0143
-  silueta k=6: 0.0165
+Paso 1: G20 = {2} + {6}  a distancia 0.8234  (tamano 2)
+Paso 2: G21 = {9} + G20{2,6}  a distancia 0.8421  (tamano 3)
+Paso 3: G22 = {12} + {20}  a distancia 0.8647  (tamano 2)
+Paso 4: G23 = {8} + {10}  a distancia 0.8662  (tamano 2)
+Paso 5: G24 = {5} + G21{9,2,6}  a distancia 0.8750  (tamano 4)
+Paso 6: G25 = {11} + {16}  a distancia 0.9036  (tamano 2)
+Paso 7: G26 = G22{12,20} + G24{5,9,2,6}  a distancia 0.9135  (tamano 6)
+Paso 8: G27 = {7} + G26{12,20,5,9,2,6}  a distancia 0.9424  (tamano 7)
+Paso 9: G28 = {17} + G25{11,16}  a distancia 0.9437  (tamano 3)
+Paso 10: G29 = {3} + {15}  a distancia 0.9476  (tamano 2)
+Paso 11: G30 = {4} + G23{8,10}  a distancia 0.9537  (tamano 3)
+Paso 12: G31 = G27{7,12,20,5,9,2,6} + G28{17,11,16}  a distancia 0.9555  (tamano 10)
+Paso 13: G32 = {1} + {13}  a distancia 0.9565  (tamano 2)
+Paso 14: G33 = {18} + G31{7,12,20,5,9,2,6,17,11,16}  a distancia 0.9621  (tamano 11)
+Paso 15: G34 = G29{3,15} + G33{18,7,12,20,5,9,2,6,17,11,16}  a distancia 0.9649  (tamano 13)
+Paso 16: G35 = {19} + G34{3,15,18,7,12,20,5,9,2,6,17,11,16}  a distancia 0.9672  (tamano 14)
+Paso 17: G36 = G30{4,8,10} + G35{19,3,15,18,7,12,20,5,9,2,6,17,11,16}  a distancia 0.9689  (tamano 17)
+Paso 18: G37 = G32{1,13} + G36{4,8,10,19,3,15,18,7,12,20,5,9,2,6,17,11,16}  a distancia 0.9711  (tamano 19)
+Paso 19: G38 = {14} + G37{1,13,4,8,10,19,3,15,18,7,12,20,5,9,2,6,17,11,16}  a distancia 0.9739  (tamano 20)
+Correlacion cofenetica = 0.8121
+  silueta k=2: 0.0165
+  silueta k=3: 0.0134
+  silueta k=4: 0.0173
+  silueta k=5: 0.0142
+  silueta k=6: 0.0166
 
 ==================================================================
 REQUERIMIENTO 3. Patron "intelligence in" (m = 15) en texto de n = 154

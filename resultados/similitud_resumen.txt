@@ -1,15 +1,15 @@
 algoritmo | minimo | promedio | maximo | tiempo promedio por par (ms)
-Levenshtein | 0.0065 | 0.0415 | 0.1102 | 0.1439
-Needleman-Wunsch | 0.0150 | 0.0519 | 0.1102 | 0.1412
-Coseno TF-IDF | 0.0010 | 0.0431 | 0.1984 | 0.0074
-Jaccard | 0.0276 | 0.0905 | 0.1588 | 0.0311
-GloVe (coseno) | 0.9235 | 0.9583 | 0.9852 | 0.0289
-Sentence-BERT (coseno) | 0.3428 | 0.5532 | 0.8098 | 0.0035
+Levenshtein | 0.0000 | 0.0421 | 0.1034 | 0.3269
+Needleman-Wunsch | 0.0088 | 0.0518 | 0.1161 | 0.3427
+Coseno TF-IDF | 0.0010 | 0.0414 | 0.1766 | 0.0097
+Jaccard | 0.0244 | 0.0878 | 0.1478 | 0.0538
+GloVe (coseno) | 0.9223 | 0.9566 | 0.9831 | 0.0552
+Sentence-BERT (coseno) | 0.3428 | 0.5532 | 0.8098 | 0.0037
 
 Correlacion de Pearson entre las similitudes de los 190 pares:
-Levenshtein               1.000  0.782  0.427  0.370  0.333  0.256
-Needleman-Wunsch          0.782  1.000  0.527  0.486  0.393  0.338
-Coseno TF-IDF             0.427  0.527  1.000  0.594  0.496  0.554
-Jaccard                   0.370  0.486  0.594  1.000  0.521  0.353
-GloVe (coseno)            0.333  0.393  0.496  0.521  1.000  0.535
-Sentence-BERT (coseno)    0.256  0.338  0.554  0.353  0.535  1.000
+Levenshtein               1.000  0.810  0.453  0.390  0.325  0.288
+Needleman-Wunsch          0.810  1.000  0.497  0.492  0.386  0.337
+Coseno TF-IDF             0.453  0.497  1.000  0.572  0.466  0.560
+Jaccard                   0.390  0.492  0.572  1.000  0.458  0.370
+GloVe (coseno)            0.325  0.386  0.466  0.458  1.000  0.528
+Sentence-BERT (coseno)    0.288  0.337  0.560  0.370  0.528  1.000

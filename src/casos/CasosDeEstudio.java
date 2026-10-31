@@ -82,6 +82,17 @@ public class CasosDeEstudio
             + f(1 - dTotal / (double) Math.max(ta.length, tb.length)));
         System.out.println("Celdas llenadas: " + ((ta.length + 1) * (tb.length + 1)));
 
+        // Las tres formas de escribir la misma recurrencia (diapositivas de programacion dinamica)
+        lev.llamadas = 0;
+        int dRec = lev.distanciaRecursiva(sa, sb, sa.length, sb.length);
+        long llamadasRec = lev.llamadas;
+        lev.llamadas = 0;
+        int dMemo = lev.distanciaMemo(sa, sb);
+        long llamadasMemo = lev.llamadas;
+        System.out.println("Subcaso con tres versiones: recursivo = " + dRec + " (" + llamadasRec + " llamadas), memorizacion = "
+            + dMemo + " (" + llamadasMemo + " llamadas), tabulacion = " + dSub + " (" + ((sa.length + 1) * (sb.length + 1))
+            + " celdas)");
+
         // ---------- Needleman-Wunsch ----------
         titulo("1.2 Needleman-Wunsch (+1, -1, -1): subcaso con los " + SUBCASO + " primeros terminos");
         NeedlemanWunsch nw = new NeedlemanWunsch();

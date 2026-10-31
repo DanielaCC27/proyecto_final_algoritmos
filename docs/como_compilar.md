@@ -27,7 +27,7 @@ El recorrido recomendado para entenderlo está en `docs/como_funciona.md`. Cada 
 | Carpeta | Qué contiene |
 |---|---|
 | `modelo`, `datos` | `Articulo` y `Corpus`: los 20 artículos |
-| `preprocesamiento` | limpieza del texto (minúsculas, palabras vacías, raíces) |
+| `seguimiento` | clases del Seguimiento 2026-2: limpieza del texto (minúsculas, solo letras, 90 palabras vacías) y ranking de términos con Counting, Radix y Bucket Sort |
 | `similitud` | Levenshtein, Needleman-Wunsch, TF-IDF, Jaccard, GloVe y Sentence-BERT (requerimiento 1) |
 | `clustering` | agrupamiento jerárquico, dendrograma y métricas (requerimiento 2) |
 | `busqueda` | KMP, Boyer-Moore y Rabin-Karp (requerimiento 3) |

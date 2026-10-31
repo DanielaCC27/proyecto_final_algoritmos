@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.zip.GZIPInputStream;
 import datos.Corpus;
-import preprocesamiento.Preprocesador;
+import seguimiento.Preprocesador;
 
 /**
  * Deja en un archivo pequeno solo los vectores GloVe de las palabras que aparecen en los abstracts.

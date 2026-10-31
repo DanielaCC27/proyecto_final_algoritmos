@@ -25,21 +25,22 @@ Todo corre en un solo programa Java. La página web (`web/`) solo llama a los se
 
 ## 2. Preprocesamiento
 
-**Dónde:** `preprocesamiento/Preprocesador.java`.
+**Dónde:** `seguimiento/Preprocesador.java` (clase del seguimiento, sin cambios salvo el método `terminos`).
 
 Convierte un abstract en una lista de términos:
 
 1. Pasa todo a minúsculas.
-2. Recorre el texto carácter por carácter y corta cada vez que aparece algo que no es una letra de la a a la z (sin `split` ni expresiones regulares).
-3. Descarta las palabras de menos de 2 letras y las palabras vacías (*the*, *of*, *and*…). Se conserva *ai*.
+2. Reemplaza todo lo que no es una letra de la a a la z por un espacio y separa las palabras (`replaceAll` y `split`, como en el seguimiento).
+3. Descarta las palabras de menos de 2 letras y las 90 palabras vacías (*the*, *of*, *and*…), guardadas en un arreglo. Se conserva *ai*.
 
-Es el mismo criterio del Seguimiento 2026-2. Ejemplo: el abstract 11 queda en 114 términos y el 16 en 93.
+Es el mismo criterio del Seguimiento 2026-2. Ejemplo: el abstract 11 queda en 110 términos y el 16 en 98.
 
 ## 3. Requerimiento 1: seis formas de medir similitud
 
 **Dónde:** paquete `similitud/`; `AnalizadorSimilitud` las reúne y mide el tiempo de cada una.
 
 ### 3.1 Levenshtein (`Levenshtein.java`)
+Tiene las tres versiones de clase: `distanciaRecursiva`, `distanciaMemo` (Top Down) y `distancia` (tabulación, Bottom Up, la que usa la aplicación).
 Cuenta cuántas ediciones (borrar, insertar o cambiar un término) hacen falta para convertir un abstract en el otro. Usa programación dinámica: llena una matriz `D` de (n+1) x (m+1) celdas, donde
 
 `D[i][j] = min( D[i-1][j] + 1, D[i][j-1] + 1, D[i-1][j-1] + costo )`
@@ -52,7 +53,7 @@ Alinea las dos secuencias de términos de punta a punta. Puntajes: coincidencia 
 ### 3.3 Coseno con TF-IDF (`TfIdf.java`)
 1. `tf(t, d)`: cuántas veces aparece el término `t` en el abstract `d`.
 2. `df(t)`: en cuántos de los 20 abstracts aparece `t`. `idf(t) = log10(20 / df(t))`: un término que está en todos los abstracts vale 0 y no aporta.
-3. Cada abstract es un vector con una posición por término del vocabulario (987 términos); `w = tf · idf`.
+3. Cada abstract es un vector con una posición por término del vocabulario (990 términos); `w = tf · idf`.
 4. La similitud es el coseno entre los dos vectores: `A·B / (|A| |B|)`. Caso: 10,9763 / (9,8019 · 11,1837) = 0,1001.
 
 ### 3.4 Jaccard (`Jaccard.java`)

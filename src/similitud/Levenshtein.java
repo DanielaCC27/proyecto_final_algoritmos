@@ -9,11 +9,80 @@ package similitud;
  *                  D[i][j-1] + 1,            (insertar b_j)
  *                  D[i-1][j-1] + costo )     (sustituir; costo = 0 si a_i = b_j, 1 si no)
  * Similitud normalizada = 1 - D[n][m] / max(n, m).   Tiempo y espacio O(n*m).
+ *
+ * Como en las diapositivas de programacion dinamica del profesor, la misma recurrencia se escribe de tres formas:
+ *   distanciaRecursiva  copia la definicion: cada llamada hace tres llamadas mas, O(3^(n+m)), solo sirve para textos cortos.
+ *   distanciaMemo       Top Down (memorizacion): el recursivo consulta la tabla antes de calcular, O(n*m).
+ *   distancia           Bottom Up (tabulacion): llena la tabla con dos ciclos, O(n*m). Es la que usa el programa.
+ * Las tres dan el mismo numero (casos de estudio y pruebas de la clase CasosDeEstudio).
  */
 public class Levenshtein
 {
     // Matriz D de la programacion dinamica: D[i][j] = distancia entre los primeros i terminos de a y los primeros j de b
     public int[][] matriz;
+    // Contador de llamadas para comparar la version recursiva con la memorizada
+    public long llamadas;
+
+    // Recursivo: D(i, j) con las tres opciones de la recurrencia. T(n) crece como 3^(n+m)
+    public int distanciaRecursiva(String[] a, String[] b, int i, int j)
+    {
+        llamadas++;
+        if (i == 0)
+        {
+            return j;
+        }
+        if (j == 0)
+        {
+            return i;
+        }
+        int costo = 1;
+        if (a[i - 1].equals(b[j - 1]))
+        {
+            costo = 0;
+        }
+        return minimo(distanciaRecursiva(a, b, i - 1, j) + 1, distanciaRecursiva(a, b, i, j - 1) + 1,
+            distanciaRecursiva(a, b, i - 1, j - 1) + costo);
+    }
+
+    // Memorizacion (Top Down): memo[i][j] = -1 significa "todavia no calculado". Orden O(n*m)
+    public int distanciaMemo(String[] a, String[] b, int i, int j, int[][] memo)
+    {
+        llamadas++;
+        if (i == 0)
+        {
+            return j;
+        }
+        if (j == 0)
+        {
+            return i;
+        }
+        if (memo[i][j] != -1)
+        {
+            return memo[i][j];
+        }
+        int costo = 1;
+        if (a[i - 1].equals(b[j - 1]))
+        {
+            costo = 0;
+        }
+        memo[i][j] = minimo(distanciaMemo(a, b, i - 1, j, memo) + 1, distanciaMemo(a, b, i, j - 1, memo) + 1,
+            distanciaMemo(a, b, i - 1, j - 1, memo) + costo);
+        return memo[i][j];
+    }
+
+    // Prepara la tabla de memorizacion con -1 y llama a la version Top Down
+    public int distanciaMemo(String[] a, String[] b)
+    {
+        int[][] memo = new int[a.length + 1][b.length + 1];
+        for (int i = 0; i <= a.length; i++)
+        {
+            for (int j = 0; j <= b.length; j++)
+            {
+                memo[i][j] = -1;
+            }
+        }
+        return distanciaMemo(a, b, a.length, b.length, memo);
+    }
 
     // Llena la matriz de arriba hacia abajo y de izquierda a derecha; la respuesta queda en la esquina D[n][m].
     // Orden de complejidad O(n*m): dos ciclos anidados, cada celda se calcula en O(1).

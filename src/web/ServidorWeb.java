@@ -23,12 +23,16 @@ import clustering.Evaluacion;
 import clustering.Fusion;
 import datos.Corpus;
 import modelo.Articulo;
+import seguimiento.Ordenamientos;
+import seguimiento.Preprocesador;
+import seguimiento.Termino;
 import similitud.AnalizadorSimilitud;
 
 /**
  * Aplicacion web del proyecto. Usa el servidor HTTP que trae el JDK (com.sun.net.httpserver),
  * sin frameworks. La pagina (carpeta web/) llama a estos servicios:
  *   GET /api/articulos                         lista de los 20 articulos (titulo, autores, abstract)
+ *   GET /api/ranking                           base del seguimiento: top de terminos con Counting, Radix y Bucket Sort
  *   GET /api/similitud?ids=11,16,3             requerimiento 1: los 6 algoritmos para cada par
  *   GET /api/clustering?metodo=average&rep=tfidf   requerimiento 2: dendrograma SVG y metricas
  *   GET /api/busqueda?patron=learning&mayusculas=0 requerimiento 3: KMP, Boyer-Moore y Rabin-Karp
@@ -58,6 +62,7 @@ public class ServidorWeb
         }
         HttpServer servidor = HttpServer.create(new InetSocketAddress(puerto), 0);
         servidor.createContext("/api/articulos", ServidorWeb::articulos);
+        servidor.createContext("/api/ranking", ServidorWeb::ranking);
         servidor.createContext("/api/similitud", ServidorWeb::similitud);
         servidor.createContext("/api/clustering", ServidorWeb::clustering);
         servidor.createContext("/api/busqueda", ServidorWeb::busqueda);
@@ -167,6 +172,61 @@ public class ServidorWeb
                 .append("}");
         }
         responderJson(intercambio, json.append("]").toString());
+    }
+
+    // Servicio /api/ranking: es el Seguimiento 2026-2 dentro de la aplicacion. Cuenta los terminos de los 20 abstracts
+    // con el mismo Preprocesador y los ordena con Counting, Radix y Bucket Sort (clases copiadas sin cambios).
+    // Cada algoritmo se repite 200 veces y se entrega el tiempo promedio. Orden de complejidad O(n + k).
+    static void ranking(HttpExchange intercambio) throws IOException
+    {
+        String todo = "";
+        for (int i = 0; i < corpus.tamano(); i++)
+        {
+            todo = todo + corpus.obtener(i).resumen + " ";
+        }
+        Termino[] terminos = new Preprocesador().contarTerminos(todo);
+        int n = terminos.length;
+        Ordenamientos ord = new Ordenamientos();
+        int k = ord.obtenerMayor(terminos, n);
+        int repeticiones = 200;
+        double[] ms = new double[3];
+        for (int a = 0; a < 3; a++)
+        {
+            long total = 0;
+            for (int r = 0; r < repeticiones; r++)
+            {
+                Termino[] copia = terminos.clone();
+                long t0 = System.nanoTime();
+                if (a == 0)
+                {
+                    ord.countingSort(copia, n);
+                }
+                else if (a == 1)
+                {
+                    ord.radixSort(copia, n);
+                }
+                else
+                {
+                    ord.bucketSort(copia, n);
+                }
+                total = total + (System.nanoTime() - t0);
+            }
+            ms[a] = total / (double) repeticiones / 1e6;
+        }
+        // Los tres dejan los terminos de menor a mayor frecuencia: el ranking se lee desde el final
+        Termino[] ordenado = ord.countingSort(terminos, n);
+        StringBuilder json = new StringBuilder("{\"n\":" + n + ",\"k\":" + k + ",\"tiempos\":" + Json.arreglo(ms));
+        json.append(",\"top\":[");
+        for (int i = 0; i < 15 && i < n; i++)
+        {
+            if (i > 0)
+            {
+                json.append(",");
+            }
+            json.append("{\"palabra\":").append(Json.texto(ordenado[n - 1 - i].palabra))
+                .append(",\"frecuencia\":").append(ordenado[n - 1 - i].frecuencia).append("}");
+        }
+        responderJson(intercambio, json.append("]}").toString());
     }
 
     // Servicio /api/similitud: para cada par de articulos elegidos corre los 6 algoritmos.

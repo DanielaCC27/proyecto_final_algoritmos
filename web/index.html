@@ -8,27 +8,47 @@
 </head>
 <body>
 <header>
+  <span class="universidad">Universidad del Quindío · Ingeniería de Sistemas y Computación</span>
   <h1>Análisis de algoritmos en el contexto de la bibliometría</h1>
-  <p>Universidad del Quindío · Ingeniería de Sistemas y Computación · Corpus de 20 artículos sobre inteligencia artificial en educación</p>
+  <p>Similitud textual, agrupamiento jerárquico y búsqueda de patrones sobre un corpus de 20 artículos de inteligencia artificial en educación</p>
   <nav>
-    <button class="pestana activa" data-vista="articulos">Corpus</button>
-    <button class="pestana" data-vista="similitud">1. Similitud</button>
-    <button class="pestana" data-vista="clustering">2. Clustering</button>
-    <button class="pestana" data-vista="busqueda">3. Búsqueda</button>
+    <button class="pestana activa" data-vista="articulos">📚 Corpus</button>
+    <button class="pestana" data-vista="ranking">📊 Ranking de términos</button>
+    <button class="pestana" data-vista="similitud">🔍 1. Similitud</button>
+    <button class="pestana" data-vista="clustering">🌳 2. Agrupamiento</button>
+    <button class="pestana" data-vista="busqueda">🔎 3. Búsqueda</button>
   </nav>
 </header>
 <main>
   <section id="articulos" class="vista activa">
     <h2>Corpus</h2>
     <p class="ayuda">Título y autores extraídos de cada PDF con PDFBox y revisados a mano. Haga clic en un artículo para ver su abstract.</p>
+    <div class="barra">
+      <div class="campo"><input id="filtroArticulos" type="text" placeholder="Filtrar por título, autor o palabra del abstract…" aria-label="Filtrar artículos"><button class="borrar" id="borrarFiltro" title="Borrar texto" aria-label="Borrar texto">✕</button></div>
+      <button class="secundario" id="abrirTodos">Abrir todos</button>
+      <button class="secundario" id="cerrarTodos">Cerrar todos</button>
+      <span class="contador" id="contadorArticulos"></span>
+    </div>
     <div id="listaArticulos"></div>
+  </section>
+
+  <section id="ranking" class="vista">
+    <h2>Base: ranking de términos (Seguimiento 2026-2)</h2>
+    <p class="ayuda">Es el seguimiento anterior dentro de la aplicación: los mismos 20 abstracts y el mismo preprocesamiento, con los términos ordenados por frecuencia sin comparaciones (Counting Sort, Radix Sort y Bucket Sort). Ese vocabulario es el punto de partida de TF-IDF, Jaccard y los vectores del proyecto final.</p>
+    <div class="controles"><button id="botonRanking" class="principal">Calcular ranking</button><button class="secundario" id="limpiarRanking">Limpiar</button></div>
+    <div id="resultadoRanking"></div>
   </section>
 
   <section id="similitud" class="vista">
     <h2>Requerimiento 1. Similitud textual</h2>
     <p class="ayuda">Seleccione dos o más artículos. Se comparan los abstracts con 4 algoritmos clásicos (Levenshtein y Needleman-Wunsch sobre la secuencia de términos, coseno con TF-IDF y Jaccard) y 2 modelos de IA (promedio de vectores GloVe y Sentence-BERT all-MiniLM-L6-v2).</p>
+    <div class="barra">
+      <button class="secundario" id="seleccionarTodos">Seleccionar todos</button>
+      <button class="secundario" id="limpiarSeleccion">Limpiar selección</button>
+      <span class="contador" id="contadorSeleccion"></span>
+    </div>
     <div id="seleccionArticulos" class="seleccion"></div>
-    <button id="botonSimilitud" class="principal">Comparar</button>
+    <div class="controles"><button id="botonSimilitud" class="principal">Comparar</button><button class="secundario" id="limpiarSimilitud">Limpiar resultados</button></div>
     <div id="resultadoSimilitud"></div>
   </section>
 
@@ -57,6 +77,7 @@
         </select>
       </label>
       <button id="botonClustering" class="principal">Agrupar</button>
+      <button class="secundario" id="limpiarClustering">Limpiar</button>
     </div>
     <div id="resultadoClustering"></div>
   </section>
@@ -65,14 +86,16 @@
     <h2>Requerimiento 3. Búsqueda de patrones</h2>
     <p class="ayuda">Busca las ocurrencias exactas del patrón en los 20 abstracts con KMP, Boyer-Moore y Rabin-Karp (implementados sin indexOf ni find). Se miden por separado el preprocesamiento del patrón y la búsqueda (promedio de 50 repeticiones).</p>
     <div class="controles">
-      <input id="patron" type="text" value="intelligence in" maxlength="200" aria-label="Patrón">
+      <div class="campo grande"><input id="patron" type="text" value="intelligence in" maxlength="200" placeholder="Escriba un patrón, por ejemplo: assessment" aria-label="Patrón"><button class="borrar" id="borrarPatron" title="Borrar patrón" aria-label="Borrar patrón">✕</button></div>
       <label class="casilla"><input id="mayusculas" type="checkbox"> Distinguir mayúsculas</label>
       <button id="botonBusqueda" class="principal">Buscar</button>
+      <button class="secundario" id="limpiarBusqueda">Limpiar todo</button>
     </div>
+    <div class="sugerencias">Pruebe con: <button class="chip" data-p="intelligence in">intelligence in</button><button class="chip" data-p="assessment">assessment</button><button class="chip" data-p="ChatGPT">ChatGPT</button><button class="chip" data-p="learning">learning</button><button class="chip" data-p="ethical">ethical</button></div>
     <div id="resultadoBusqueda"></div>
   </section>
 </main>
-<footer>Proyecto final de Análisis de algoritmos · Daniela Castañeda Cartagena y David Esteban Perez Arevalo · Algoritmos implementados en Java sin librerías que los resuelvan</footer>
+<footer>Proyecto final de Análisis de algoritmos · Daniela Castañeda Cartagena y David Esteban Perez Arevalo</footer>
 <script src="app.js"></script>
 </body>
 </html>

@@ -44,7 +44,14 @@ Notas:
 
 ## Actualizar después de un cambio
 
-Vuelve a correr el mismo `az containerapp up ...` desde la carpeta del proyecto; publica una nueva revisión.
+El despliegue real usa la imagen que publica GitHub Actions en ghcr.io (ver el README, sección *Despliegue en Azure*). Tras subir los cambios a `main` y esperar la marca verde en *Actions*:
+
+```powershell
+az containerapp update --name bibliometria-uq --resource-group rg-bibliometria `
+  --image ghcr.io/danielacc27/proyecto_final_algoritmos:latest --revision-suffix v2
+```
+
+Usa un sufijo distinto en cada actualización (`v3`, `v4`, …).
 
 ## Ver errores
 

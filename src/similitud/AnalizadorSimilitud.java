@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import datos.Corpus;
 import modelo.Articulo;
-import preprocesamiento.Preprocesador;
+import seguimiento.Preprocesador;
 
 /**
  * Reune los 6 algoritmos del requerimiento 1 y calcula la similitud entre dos articulos.
