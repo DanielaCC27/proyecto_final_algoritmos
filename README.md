@@ -33,11 +33,10 @@ proyecto-final/
 │   ├── metadatos.csv      número;título;autores (revisado a mano)
 │   └── embeddings/        glove_corpus_100d.txt y sbert_minilm_384d.csv
 ├── embeddings/            generar_embeddings_sbert.py y requirements.txt
-├── resultados/            salidas de CasosDeEstudio y Experimentos (CSV, TXT, SVG, PNG)
+├── resultados/            salidas de CasosDeEstudio y Experimentos (CSV, TXT, SVG)
 ├── lib/                   pdfbox-app-3.0.3.jar (solo para la extracción)
 ├── articulos/             aquí van los 20 PDF (no se suben al repositorio)
 ├── .github/workflows/     publicar-imagen.yml (construye y publica la imagen en ghcr.io)
-├── docs/                  arquitectura, Excel de cálculos y guías
 ├── Dockerfile
 └── compilar.bat / compilar.sh / ejecutar.bat / ejecutar.sh
 ```
