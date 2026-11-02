@@ -10,7 +10,7 @@
 <header>
   <span class="universidad">Universidad del Quindío · Ingeniería de Sistemas y Computación</span>
   <h1>Análisis de algoritmos en el contexto de la bibliometría</h1>
-  <p>Comparamos 20 artículos sobre inteligencia artificial en educación: qué tan parecidos son, cómo se agrupan y dónde aparece una frase</p>
+  <p>Similitud textual, agrupamiento jerárquico y búsqueda de patrones sobre un corpus de 20 artículos de inteligencia artificial en educación</p>
   <nav>
     <button class="pestana activa" data-vista="articulos">📚 Corpus</button>
     <button class="pestana" data-vista="ranking">📊 Ranking de términos</button>
@@ -33,8 +33,8 @@
   </section>
 
   <section id="ranking" class="vista">
-    <h2>Ranking de términos (seguimiento 2026-2)</h2>
-    <p class="ayuda">Aquí está el seguimiento anterior: los mismos 20 abstracts y el mismo preprocesamiento. Los términos se ordenan por frecuencia con Counting Sort, Radix Sort y Bucket Sort, sin comparar elementos entre sí. Este vocabulario es el que usan después TF-IDF, Jaccard y los vectores.</p>
+    <h2>Ranking de términos </h2>
+    <p class="ayuda">En esta pestaña se encuentran los 20 abstracts trabajados en el seguimiento y el mismo preprocesamiento. Los términos se ordenan por frecuencia con Counting Sort, Radix Sort y Bucket Sort, sin comparar elementos entre sí. Este vocabulario es el que usan después TF-IDF, Jaccard y los vectores.</p>
     <div class="controles"><button id="botonRanking" class="principal">Calcular ranking</button><button class="secundario" id="limpiarRanking">Limpiar</button></div>
     <div id="resultadoRanking"></div>
   </section>
@@ -84,7 +84,7 @@
 
   <section id="busqueda" class="vista">
     <h2>Requerimiento 3. Búsqueda de patrones</h2>
-    <p class="ayuda">Busca el texto exacto en los 20 abstracts con KMP, Boyer-Moore y Rabin-Karp. Se muestra aparte el tiempo de preparar el patrón y el de buscar (promedio de 50 repeticiones).</p>
+    <p class="ayuda">Busca el texto exacto en los 20 abstracts con KMP, Boyer-Moore y Rabin-Karp. Se muestra aparte el tiempo de preparar el patrón y el de buscar.</p>
     <div class="controles">
       <div class="campo grande"><input id="patron" type="text" value="intelligence in" maxlength="200" placeholder="Escriba lo que quiere buscar, por ejemplo: assessment" aria-label="Patrón"><button class="borrar" id="borrarPatron" title="Borrar patrón" aria-label="Borrar patrón">✕</button></div>
       <label class="casilla"><input id="mayusculas" type="checkbox"> Distinguir mayúsculas</label>

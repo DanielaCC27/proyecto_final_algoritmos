@@ -10,7 +10,7 @@ La aplicación web tiene cinco pestañas: *Corpus*, *Ranking de términos* (el s
 2. **Agrupamiento jerárquico**: single, complete y average linkage implementados desde cero, con dendrograma en SVG, correlación cofenética y coeficiente de silueta.
 3. **Búsqueda de patrones**: KMP, Boyer-Moore (carácter malo y sufijo bueno) y Rabin-Karp (rolling hash), sin `indexOf` ni `find`, con tiempos de preprocesamiento y de búsqueda por separado.
 
-El documento técnico (arquitectura, casos de estudio paso a paso, T(n) y declaración de uso de IA) se entrega aparte. Para entender qué hace cada proceso y cómo funciona, lee `docs/como_funciona.md`; los cálculos paso a paso están en `docs/calculos_paso_a_paso.xlsx`.
+El documento técnico se entrega aparte. 
 
 ## Estructura
 
@@ -75,18 +75,6 @@ git push a main  ->  GitHub Actions construye la imagen  ->  ghcr.io  ->  Azure 
 1. **Repositorio.** El código vive en https://github.com/DanielaCC27/proyecto_final_algoritmos (público, sin los PDF).
 2. **Imagen.** El flujo `.github/workflows/publicar-imagen.yml` se ejecuta en cada *push* a `main`: construye la imagen con el `Dockerfile` y la publica en GitHub Container Registry como `ghcr.io/danielacc27/proyecto_final_algoritmos:latest`. Se usa ghcr.io porque la suscripción de estudiante de Azure no permite *ACR Tasks* ni crear *service principals*.
 3. **Contenedor.** La aplicación `bibliometria-uq` (grupo de recursos `rg-bibliometria`, región `eastus`) toma esa imagen.
-
-
-### Actualizar después de un cambio en el código
-
-1. Subir los cambios a `main` (`git add .`, `git commit -m "mensaje"`, `git push`).
-2. Esperar a que termine la acción en la pestaña *Actions* de GitHub (marca verde).
-3. Publicar la imagen nueva en Azure, con un sufijo de revisión distinto cada vez (`v2`, `v3`, …):
-
-```powershell
-az containerapp update --name bibliometria-uq --resource-group rg-bibliometria `
-  --image ghcr.io/danielacc27/proyecto_final_algoritmos:latest --revision-suffix v2
-```
 
 ## Reglas del curso que cumple
 
