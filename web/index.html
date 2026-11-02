@@ -10,7 +10,7 @@
 <header>
   <span class="universidad">Universidad del Quindío · Ingeniería de Sistemas y Computación</span>
   <h1>Análisis de algoritmos en el contexto de la bibliometría</h1>
-  <p>Similitud textual, agrupamiento jerárquico y búsqueda de patrones sobre un corpus de 20 artículos de inteligencia artificial en educación</p>
+  <p>Comparamos 20 artículos sobre inteligencia artificial en educación: qué tan parecidos son, cómo se agrupan y dónde aparece una frase</p>
   <nav>
     <button class="pestana activa" data-vista="articulos">📚 Corpus</button>
     <button class="pestana" data-vista="ranking">📊 Ranking de términos</button>
@@ -22,7 +22,7 @@
 <main>
   <section id="articulos" class="vista activa">
     <h2>Corpus</h2>
-    <p class="ayuda">Título y autores extraídos de cada PDF con PDFBox y revisados a mano. Haga clic en un artículo para ver su abstract.</p>
+    <p class="ayuda">Estos son los 20 artículos. El título y los autores se sacaron de cada PDF y se corrigieron a mano. Haga clic en uno para leer su abstract.</p>
     <div class="barra">
       <div class="campo"><input id="filtroArticulos" type="text" placeholder="Filtrar por título, autor o palabra del abstract…" aria-label="Filtrar artículos"><button class="borrar" id="borrarFiltro" title="Borrar texto" aria-label="Borrar texto">✕</button></div>
       <button class="secundario" id="abrirTodos">Abrir todos</button>
@@ -33,15 +33,15 @@
   </section>
 
   <section id="ranking" class="vista">
-    <h2>Base: ranking de términos (Seguimiento 2026-2)</h2>
-    <p class="ayuda">Es el seguimiento anterior dentro de la aplicación: los mismos 20 abstracts y el mismo preprocesamiento, con los términos ordenados por frecuencia sin comparaciones (Counting Sort, Radix Sort y Bucket Sort). Ese vocabulario es el punto de partida de TF-IDF, Jaccard y los vectores del proyecto final.</p>
+    <h2>Ranking de términos (seguimiento 2026-2)</h2>
+    <p class="ayuda">Aquí está el seguimiento anterior: los mismos 20 abstracts y el mismo preprocesamiento. Los términos se ordenan por frecuencia con Counting Sort, Radix Sort y Bucket Sort, sin comparar elementos entre sí. Este vocabulario es el que usan después TF-IDF, Jaccard y los vectores.</p>
     <div class="controles"><button id="botonRanking" class="principal">Calcular ranking</button><button class="secundario" id="limpiarRanking">Limpiar</button></div>
     <div id="resultadoRanking"></div>
   </section>
 
   <section id="similitud" class="vista">
     <h2>Requerimiento 1. Similitud textual</h2>
-    <p class="ayuda">Seleccione dos o más artículos. Se comparan los abstracts con 4 algoritmos clásicos (Levenshtein y Needleman-Wunsch sobre la secuencia de términos, coseno con TF-IDF y Jaccard) y 2 modelos de IA (promedio de vectores GloVe y Sentence-BERT all-MiniLM-L6-v2).</p>
+    <p class="ayuda">Marque dos o más artículos y compare sus abstracts con seis algoritmos. Cuatro son clásicos: Levenshtein y Needleman-Wunsch (sobre la secuencia de términos), coseno con TF-IDF y Jaccard. Dos usan IA: el promedio de vectores GloVe y Sentence-BERT.</p>
     <div class="barra">
       <button class="secundario" id="seleccionarTodos">Seleccionar todos</button>
       <button class="secundario" id="limpiarSeleccion">Limpiar selección</button>
@@ -54,7 +54,7 @@
 
   <section id="clustering" class="vista">
     <h2>Requerimiento 2. Agrupamiento jerárquico</h2>
-    <p class="ayuda">Distancia = 1 − coseno entre las representaciones de los 20 abstracts. La correlación cofenética mide qué tan fiel es el dendrograma a las distancias originales; la silueta mide la coherencia de los grupos al cortar el árbol en k grupos.</p>
+    <p class="ayuda">La distancia entre dos artículos es 1 − coseno. La correlación cofenética dice qué tanto se parece el dendrograma a las distancias reales, y la silueta dice qué tan bien quedan los grupos al cortar el árbol en k grupos.</p>
     <div class="controles">
       <label>Criterio
         <select id="metodo">
@@ -84,9 +84,9 @@
 
   <section id="busqueda" class="vista">
     <h2>Requerimiento 3. Búsqueda de patrones</h2>
-    <p class="ayuda">Busca las ocurrencias exactas del patrón en los 20 abstracts con KMP, Boyer-Moore y Rabin-Karp (implementados sin indexOf ni find). Se miden por separado el preprocesamiento del patrón y la búsqueda (promedio de 50 repeticiones).</p>
+    <p class="ayuda">Busca el texto exacto en los 20 abstracts con KMP, Boyer-Moore y Rabin-Karp. Se muestra aparte el tiempo de preparar el patrón y el de buscar (promedio de 50 repeticiones).</p>
     <div class="controles">
-      <div class="campo grande"><input id="patron" type="text" value="intelligence in" maxlength="200" placeholder="Escriba un patrón, por ejemplo: assessment" aria-label="Patrón"><button class="borrar" id="borrarPatron" title="Borrar patrón" aria-label="Borrar patrón">✕</button></div>
+      <div class="campo grande"><input id="patron" type="text" value="intelligence in" maxlength="200" placeholder="Escriba lo que quiere buscar, por ejemplo: assessment" aria-label="Patrón"><button class="borrar" id="borrarPatron" title="Borrar patrón" aria-label="Borrar patrón">✕</button></div>
       <label class="casilla"><input id="mayusculas" type="checkbox"> Distinguir mayúsculas</label>
       <button id="botonBusqueda" class="principal">Buscar</button>
       <button class="secundario" id="limpiarBusqueda">Limpiar todo</button>

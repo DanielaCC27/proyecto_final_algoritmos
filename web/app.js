@@ -92,7 +92,7 @@ $('botonRanking').addEventListener('click', async () => {
     html += d.top.map((t, i) => `<div class="ranking-fila"><span class="pos">${i + 1}</span><span>${escapar(t.palabra)}</span>
       <span class="barra-fondo"><span class="barra-valor" style="width:${(100 * t.frecuencia / mayor).toFixed(1)}%"></span></span>
       <span class="frec">${t.frecuencia}</span></div>`).join('');
-    html += '<p class="ayuda">Los tres algoritmos dejan el mismo orden. Tiempo promedio de 200 ejecuciones en el servidor.</p>';
+    html += '<p class="ayuda">Los tres dejan el mismo orden. Los tiempos son el promedio de 200 ejecuciones en el servidor.</p>';
     $('resultadoRanking').innerHTML = html;
   } catch (e) {
     mostrarError('resultadoRanking', e);
@@ -129,7 +129,7 @@ $('botonSimilitud').addEventListener('click', async () => {
   try {
     const d = await pedir('/api/similitud?ids=' + ids.join(','));
     // El valor más alto de cada par se resalta; la barrita de cada celda mide el valor de 0 a 1
-    let html = '<p class="ayuda">El valor más alto de cada fila está resaltado. Todas las similitudes van de 0 (nada en común) a 1 (idénticos).</p>' +
+    let html = '<p class="ayuda">En cada fila se resalta el valor más alto. Todas las similitudes van de 0 (nada en común) a 1 (idénticos).</p>' +
       '<div class="tabla-scroll"><table><tr><th class="izq">Par</th>' + d.algoritmos.map(a => `<th>${escapar(a)}</th>`).join('') + '</tr>';
     for (const p of d.pares) {
       const mayor = Math.max(...p.valores);
@@ -143,7 +143,7 @@ $('botonSimilitud').addEventListener('click', async () => {
       html += `<tr><td class="izq">${p.a} vs ${p.b}</td>` + p.tiempos.map(v => `<td>${f(v, 4)}</td>`).join('') +
         `<td>${f(p.euclidianas[0])}</td><td>${f(p.euclidianas[1])}</td></tr>`;
     }
-    html += '</table></div><p class="ayuda">Los vectores de Sentence-BERT se calculan una sola vez con el script de Python; aquí solo se mide el coseno. GloVe sí promedia los vectores de palabra en cada comparación.</p>';
+    html += '</table></div><p class="ayuda">Los vectores de Sentence-BERT se calcularon antes con el script de Python, así que aquí solo se mide el coseno. En GloVe sí se promedian los vectores de las palabras en cada comparación.</p>';
     $('resultadoSimilitud').innerHTML = html;
   } catch (e) {
     mostrarError('resultadoSimilitud', e);
@@ -200,12 +200,12 @@ async function buscar() {
       <div class="tarjeta"><div class="valor">${d.m}</div><div class="etiqueta">Largo del patrón (m)</div></div>
       <div class="tarjeta"><div class="valor">${d.n}</div><div class="etiqueta">Caracteres del corpus (n)</div></div>
     </div>
-    <p>Los tres algoritmos dan las mismas posiciones: <strong>${d.coinciden ? 'sí ✔' : 'no ✘'}</strong>.</p>`;
+    <p>¿Los tres encuentran las mismas posiciones? <strong>${d.coinciden ? 'sí ✔' : 'no ✘'}</strong>.</p>`;
     html += '<div class="tabla-scroll"><table><tr><th class="izq">Algoritmo</th><th>Preprocesamiento (ms)</th><th>Búsqueda (ms)</th><th>Comparaciones</th><th>Comparaciones / n</th><th>Ocurrencias</th></tr>' +
       d.algoritmos.map(a => `<tr><td class="izq">${a.nombre}</td><td>${f(a.preprocesamientoMs, 5)}</td><td>${f(a.busquedaMs, 5)}</td><td>${a.comparaciones}</td><td>${f(a.comparaciones / d.n, 3)}</td><td>${a.ocurrencias}</td></tr>`).join('') +
       '</table></div>';
     if (d.resultados.length === 0) {
-      html += '<div class="vacio">No hay ocurrencias de ese patrón. Pruebe con otra palabra o desmarque «Distinguir mayúsculas».</div>';
+      html += '<div class="vacio">No se encontró ese texto. Pruebe con otra palabra o desmarque «Distinguir mayúsculas».</div>';
     }
     for (const r of d.resultados) {
       html += `<div class="resultado"><strong>${r.numero}. ${escapar(r.titulo)}</strong><div class="autores">${escapar(r.autores)} · posiciones ${r.posiciones.join(', ')}</div>` +
