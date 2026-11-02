@@ -76,18 +76,6 @@ git push a main  ->  GitHub Actions construye la imagen  ->  ghcr.io  ->  Azure 
 2. **Imagen.** El flujo `.github/workflows/publicar-imagen.yml` se ejecuta en cada *push* a `main`: construye la imagen con el `Dockerfile` y la publica en GitHub Container Registry como `ghcr.io/danielacc27/proyecto_final_algoritmos:latest`. Se usa ghcr.io porque la suscripción de estudiante de Azure no permite *ACR Tasks* ni crear *service principals*.
 3. **Contenedor.** La aplicación `bibliometria-uq` (grupo de recursos `rg-bibliometria`, región `eastus`) toma esa imagen.
 
-### Primera vez (ya hecho)
-
-```powershell
-az login
-az extension add --name containerapp --upgrade
-az provider register --namespace Microsoft.App
-az provider register --namespace Microsoft.OperationalInsights
-az group create --name rg-bibliometria --location eastus
-az containerapp env create --name bibliometria-uq-env --resource-group rg-bibliometria --location eastus
-az containerapp create --name bibliometria-uq --resource-group rg-bibliometria --environment bibliometria-uq-env `
-  --image ghcr.io/danielacc27/proyecto_final_algoritmos:latest --ingress external --target-port 8080
-```
 
 ### Actualizar después de un cambio en el código
 
@@ -99,16 +87,6 @@ az containerapp create --name bibliometria-uq --resource-group rg-bibliometria -
 az containerapp update --name bibliometria-uq --resource-group rg-bibliometria `
   --image ghcr.io/danielacc27/proyecto_final_algoritmos:latest --revision-suffix v2
 ```
-
-### Probar y revisar
-
-- Abrir la URL: debe cargar la página con las cinco pestañas (Corpus, Ranking de términos, Similitud, Agrupamiento y Búsqueda). `<URL>/api/articulos` devuelve los 20 artículos en JSON.
-- Ver errores: `az containerapp logs show --name bibliometria-uq --resource-group rg-bibliometria --follow`
-- Al terminar la sustentación se puede borrar todo con `az group delete --name rg-bibliometria --yes`.
-
-La guía con más detalle está en `docs/despliegue_azure.md`.
-
-**Con Docker en cualquier equipo:** `docker build -t bibliometria .` y `docker run -p 8080:8080 bibliometria`.
 
 ## Reglas del curso que cumple
 
